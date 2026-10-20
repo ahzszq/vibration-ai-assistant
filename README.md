@@ -36,7 +36,7 @@
 
 | | 单文件离线版 | Python 服务版 |
 |---|---|---|
-| 入口 | [`振动AI实验助手-单文件v4.html`](振动AI实验助手-单文件v4.html) / Pages 上的 `docs/index.html` | `app.py` → http://127.0.0.1:8765 |
+| 入口 | [`振动AI实验助手.html`](振动AI实验助手.html) / Pages 上的 `docs/index.html` | `app.py` → http://127.0.0.1:8765 |
 | 是否需要环境 | 不需要，双击即用 | 需 Python 3.10+，双击 `安装并启动.cmd` |
 | 计算在哪 | 浏览器里的 JS 版本积分器 | Python 里的原版积分器 |
 | 功能 | 参数、四图、附加分析、导出、AI 改参/扫频/文档计划/结果解释、代理模型 | 完全一致 |
@@ -76,7 +76,7 @@
 
 ```
 振动AI实验助手/
-├─ 振动AI实验助手-单文件v4.html   离线版，双击即用（1.53 MB）
+├─ 振动AI实验助手.html   离线版，双击即用（1.53 MB）
 ├─ docs/index.html                  GitHub Pages 站点（同一份单文件）
 ├─ index.html  main.js  assistant.js  analysis.js  styles.css   服务版前端
 ├─ app.py  engine.py  physics.py  ai_workflow.py                服务版后端
