@@ -11,6 +11,44 @@ BOUNDS = np.array([[0.7, 1.3], [0.02, 0.12], [0.02, 0.08]])
 REQUEST_DEADLINE = ContextVar('request_deadline', default=None)
 REQUEST_PROGRESS = ContextVar('request_progress', default=None)
 
+def finite_time_lyapunov(params, initial_state, dt, periods=8, renorm_fraction=0.25, perturbation=1e-8):
+    """Estimate the largest finite-time Lyapunov exponent with Benettin renormalization.
+
+    The reference and perturbed trajectories share the same external forcing.  This is
+    a local divergence diagnostic for the forced, non-autonomous model; it is not a
+    standalone chaos classifier.
+    """
+    solver = Solver()
+    steps = max(16, int(round(float(periods) * params['NN'])))
+    interval = max(1, int(round(params['NN'] * renorm_fraction)))
+    ref = [float(v) for v in initial_state]
+    t = float(ref[0]) if len(ref) == 7 else 0.0
+    ref = ref[1:] if len(ref) == 7 else ref
+    pert = ref.copy()
+    pert[0] += perturbation
+    d0 = math.sqrt(sum((a-b)**2 for a,b in zip(pert, ref))) or perturbation
+    log_sum = 0.0
+    samples = []
+    for step in range(1, steps + 1):
+        ref = solver.RK4(ref, t, dt, params)
+        pert = solver.RK4(pert, t, dt, params)
+        t += dt
+        if step % interval == 0 or step == steps:
+            dist = math.sqrt(sum((a-b)**2 for a,b in zip(pert, ref)))
+            if not math.isfinite(dist) or dist <= 0:
+                return dict(status='unavailable', exponent=None, samples=[],
+                            window_periods=float(periods), note='扰动低于数值分辨率或轨迹发散，无法估计指数。')
+            log_sum += math.log(dist / d0)
+            elapsed = step * dt
+            exponent = log_sum / max(elapsed, dt)
+            samples.append([float(t), float(exponent)])
+            scale = d0 / dist
+            pert = [a + (b-a) * scale for a,b in zip(ref, pert)]
+    exponent = float(samples[-1][1]) if samples else 0.0
+    return dict(status='finite_time_estimate', exponent=exponent, samples=samples,
+                window_periods=float(periods), perturbation=float(perturbation),
+                renorm_steps=int(interval), note='有限时间局部轨迹发散率；不自动判定混沌。')
+
 def parameters(values):
     p = dict(DEFAULTS)
     for key, value in values.items():
@@ -84,6 +122,8 @@ def simulate(values):
     # Keep every integration sample in a short, contiguous final-time window.
     phase_count = min(len(a), 8 * p['NN'])
     phase_rows = a[-phase_count:]
+    lyapunov = finite_time_lyapunov(p, list(state_tail)[0], dt,
+                                    periods=min(8, phase_count / p['NN']))
     segments = np.array_split(a, min(24, len(a)))
     rms_windows = [[float(segment[-1, 0]), float(np.sqrt(np.mean(segment[:, 1] ** 2)))] for segment in segments]
     counts, histogram_edges = np.histogram(signal, bins=24)
@@ -97,7 +137,7 @@ def simulate(values):
         series=a[::stride].tolist(), spectrum=np.column_stack([freq[bins], power[bins]]).tolist(),
         phase=phase_rows[:, 1:3].tolist(),
         states=state_samples, state_tail=list(state_tail),
-        analysis=dict(rms_windows=rms_windows, histogram=histogram),
+        analysis=dict(rms_windows=rms_windows, histogram=histogram), lyapunov=lyapunov,
         poincare=section, sampling=dict(dt=dt, period=period, chart_stride=stride,
             phase_stride=1, phase_points=phase_count,
             phase_cycles=phase_count / p['NN'],
