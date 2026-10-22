@@ -83,7 +83,8 @@ function syncTaskControls(){
  $('workspace').setAttribute('aria-busy',String(locked));
 }
 document.addEventListener('task-state-changed',syncTaskControls);
-$('openAssistant').onclick=()=>{$('assistantTools').open=true;$('openAssistant').setAttribute('aria-expanded','true');$('assistantTools').scrollIntoView({behavior:'smooth',block:'start'})};
-$('assistantTools').addEventListener('toggle',()=>{$('openAssistant').setAttribute('aria-expanded',String($('assistantTools').open))});
+if($('openAssistant'))$('openAssistant').onclick=()=>{$('assistantTools').open=true;$('openAssistant').setAttribute('aria-expanded','true');$('assistantTools').scrollIntoView({behavior:'smooth',block:'start'})};
+$('assistantTools').addEventListener('toggle',()=>{$('openAssistant')?.setAttribute('aria-expanded',String($('assistantTools').open))});
 $('chatLauncher').onclick=()=>{$('chatDock').hidden=false;$('chatInput')?.focus()};
 $('closeChat').onclick=()=>{$('chatDock').hidden=true};
+
