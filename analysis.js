@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  const panel=$('extra').parentElement,actions=document.createElement('div');actions.className='actions';actions.style.marginBottom='14px';
  for(const [kind,label] of [['lyapunov','李雅普诺夫指数'],['correlation_dimension','关联维数参考图']]){
   const button=document.createElement('button');button.type='button';button.className='secondary';button.textContent=label;
-  button.onclick=()=>{$('analysisKind').value=kind;delete plotRanges.extra;updateExtra();if(!result)$('extraNote').textContent='已选择'+label+'，请先运行仿真，完成后自动显示。';panel.scrollIntoView({behavior:'smooth',block:'center'})};actions.append(button);
+  button.onclick=()=>{$('analysisKind').value=kind;$('analysisKind').dispatchEvent(new Event('change'));updateExtra();if(!result)$('extraNote').textContent='已选择'+label+'，请先运行仿真，完成后自动显示。';panel.scrollIntoView({behavior:'smooth',block:'center'})};actions.append(button);
  }
  panel.prepend(actions);
 });
@@ -52,20 +52,26 @@ function exportPoints(id){
  if(id==='time')return (result.states||[]).map(r=>[r[0],r[1+stateIndex($('timeAxis').value)]]);
  return id==='spectrum'?spectrumPoints():result.poincare;
 }
+function validateFigureOptions(){
+ const font=Number($('figureFont').value),line=Number($('figureLine').value);
+ if(!Number.isFinite(font)||font<8||font>24)throw Error('字体大小须为8–24');
+ if(!Number.isFinite(line)||line<.2||line>3)throw Error('曲线线宽须为0.2–3');
+ for(const label of plotLabels($('exportPlot').value))if(label.length>160)throw Error('轴标题最多160字符，请缩短标题');
+}
 async function exportPng(){try{
- if(!result)throw Error('请先运行仿真');
+ if(!result)throw Error('请先运行仿真');validateFigureOptions();await document.fonts.ready;
  const id=$('exportPlot').value,dpi=Number($('pngDpi').value),w=Number($('pngWidth').value),h=Number($('pngHeight').value);
  if(!Number.isFinite(dpi)||dpi<72||dpi>1200||!Number.isFinite(w)||!Number.isFinite(h)||w<2||w>16||h<2||h>16)throw Error('DPI须为72–1200，宽高须为2–16英寸');
  if(w*h*dpi*dpi>24000000)throw Error('导出最多2400万像素，请降低DPI或尺寸');
  const out=document.createElement('canvas');out.width=Math.round(w*dpi);out.height=Math.round(h*dpi);const ctx=out.getContext('2d');
  const points=exportPoints(id);if(!points.length)throw Error('本图暂无数据');paperPlot(ctx,out.width,out.height,points,id,true);
- const blob=await new Promise(resolve=>out.toBlob(resolve,'image/png'));const output=pngWithDpi(new Uint8Array(await blob.arrayBuffer()),dpi),url=URL.createObjectURL(output),a=document.createElement('a');a.href=url;a.download=`振动分析-${id}-${dpi}dpi.png`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('pngState').textContent=`已导出 ${w} × ${h} 英寸，${dpi} DPI（${out.width} × ${out.height} 像素）`;
+ const blob=await new Promise(resolve=>out.toBlob(resolve,'image/png'));if(!blob)throw Error('图片生成失败，请降低分辨率');const output=pngWithDpi(new Uint8Array(await blob.arrayBuffer()),dpi);save(`振动分析-${id}-${dpi}dpi.png`,output,'image/png');$('pngState').textContent=`已导出 ${w} × ${h} 英寸，${dpi} DPI（${out.width} × ${out.height} 像素）`;
  }catch(e){$('pngState').textContent=e.message}}
 document.addEventListener('DOMContentLoaded',()=>{const chat=document.querySelector('.chat-box');chat.open=true;$('dockBody').append(chat);const configButton=document.createElement('button');configButton.className='secondary chat-config-link';configButton.textContent='模型配置 / 文档工具';configButton.onclick=()=>{$('assistantTools').open=true;const settings=$('assistant').querySelector('details');settings.open=true;$('assistantTools').scrollIntoView({behavior:'smooth'});$('chatDock').hidden=true};$('dockBody').prepend(configButton);const historyButton=document.createElement('button');historyButton.className='secondary';historyButton.textContent='导出对话记录';historyButton.onclick=()=>save('AI对话记录.json',JSON.stringify(chatHistory,null,2));chat.querySelector('.actions').append(historyButton);fillAxisOptions();['timeAxis','phaseX','phaseY','analysisKind'].forEach(id=>$(id)?.addEventListener('change',()=>{if(id==='timeAxis'&&result){const key=$('timeAxis').value;chart('time',(result.states||[]).map(r=>[r[0],r[1+stateIndex(key)]]))}if(id!=='timeAxis')draw()}));$('pngDpi')?.addEventListener('input',()=>{$('pngState').textContent=`${$('pngWidth').value} × ${$('pngHeight').value} 英寸，${$('pngDpi').value} DPI = ${Math.round($('pngWidth').value*$('pngDpi').value)} × ${Math.round($('pngHeight').value*$('pngDpi').value)} 像素`});['pngWidth','pngHeight'].forEach(id=>$(id)?.addEventListener('input',()=>$('pngDpi').dispatchEvent(new Event('input'))));$('exportPng')?.addEventListener('click',exportPng);updateExtra()});
 const oldDraw=window.draw;window.draw=function(){oldDraw?.();if(result){const key=$('timeAxis')?.value||'y5';$('timeNote').textContent=`横轴：时间　纵轴：状态 ${key}（全时段抽样显示）`;$('phase').parentElement.querySelector('h2').textContent=`相轨线（${$('phaseX').value}–${$('phaseY').value}）`;chart('time',(result.states||[]).map(r=>[r[0],r[1+(stateIndex(key))]]));const tail=result.state_tail;if(tail){chart('phase',tail.map(r=>[r[1+stateIndex($('phaseX').value)],r[1+stateIndex($('phaseY').value)]]),'#ff5252');$('phaseNote').textContent=`${$('phaseX').value}–${$('phaseY').value} 相轨线；末 ${result.sampling.phase_cycles} 个周期的连续积分点，未作稳态判定。`}updateExtra()}};
 
-$('applyRange').onclick=()=>{try{const range={};for(const k of ['xmin','xmax','ymin','ymax']){range[k]=$(k).value.trim()===''?null:Number($(k).value);if(range[k]!==null&&!Number.isFinite(range[k]))throw Error('范围须为有限数值')}if(range.xmin!==null&&range.xmax!==null&&range.xmin>=range.xmax||range.ymin!==null&&range.ymax!==null&&range.ymin>=range.ymax)throw Error('最小值必须小于最大值');plotRanges[$('exportPlot').value]=range;draw();$('pngState').textContent='已应用坐标范围，PNG导出使用同一范围'}catch(e){$('pngState').textContent=e.message}};
-$('autoRange').onclick=()=>{delete plotRanges[$('exportPlot').value];for(const k of ['xmin','xmax','ymin','ymax'])$(k).value='';draw()};
+$('applyRange').onclick=()=>{try{const range={};for(const k of ['xmin','xmax','ymin','ymax']){range[k]=$(k).value.trim()===''?null:Number($(k).value);if(range[k]!==null&&!Number.isFinite(range[k]))throw Error('范围须为有限数值')}if(range.xmin!==null&&range.xmax!==null&&range.xmin>=range.xmax||range.ymin!==null&&range.ymax!==null&&range.ymin>=range.ymax)throw Error('最小值必须小于最大值');plotRanges[figureTitleKey($('exportPlot').value)]=range;draw();$('pngState').textContent='已应用坐标范围，PNG导出使用同一范围'}catch(e){$('pngState').textContent=e.message}};
+$('autoRange').onclick=()=>{delete plotRanges[figureTitleKey($('exportPlot').value)];for(const k of ['xmin','xmax','ymin','ymax'])$(k).value='';draw()};
 
 
 
@@ -80,7 +86,7 @@ function exportFigureCsv(){try{if(!result)throw Error('请先运行仿真');cons
 // A small vector drawing target for the shared paperPlot renderer.
 function figureSvg(width,height,points,id,w,h){
  const escape=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
- const parts=[],stack=[];let path='',transform='',clip='',count=0;
+ const parts=[],stack=[],measure=document.createElement('canvas').getContext('2d');let path='',transform='',clip='',count=0;
  const attrs=()=>` transform="${transform}" ${clip}`;
  const ctx={fillStyle:'#fff',strokeStyle:'#111',lineWidth:1,font:'13px Times New Roman',textAlign:'left',textBaseline:'middle',
   fillRect(x,y,w,h){parts.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${this.fillStyle}"${attrs()}/>` )},
@@ -91,22 +97,36 @@ function figureSvg(width,height,points,id,w,h){
   stroke(){parts.push(`<path d="${path}" fill="none" stroke="${this.strokeStyle}" stroke-width="${this.lineWidth}" stroke-linejoin="round"${attrs()}/>` )},
   fill(){parts.push(`<path d="${path}" fill="${this.fillStyle}"${attrs()}/>` )},
   clip(){const name='clip'+count++;parts.push(`<defs><clipPath id="${name}"><path d="${path}"/></clipPath></defs>`);clip=`clip-path="url(#${name})"`},
-  save(){stack.push({transform,clip})},restore(){({transform,clip}=stack.pop())},
+  save(){stack.push({transform,clip,font:this.font,fillStyle:this.fillStyle,strokeStyle:this.strokeStyle,lineWidth:this.lineWidth,textAlign:this.textAlign,textBaseline:this.textBaseline})},restore(){const state=stack.pop();({transform,clip}=state);for(const k of ['font','fillStyle','strokeStyle','lineWidth','textAlign','textBaseline'])this[k]=state[k]},
   translate(x,y){transform+=` translate(${x} ${y})`},rotate(a){transform+=` rotate(${a*180/Math.PI})`},
-  measureText(text){return {width:String(text).length*parseFloat(this.font)*.58}},
-  fillText(text,x,y){const size=parseFloat(this.font),anchor=this.textAlign==='center'?'middle':this.textAlign==='right'?'end':'start';parts.push(`<text x="${x}" y="${y}" font-family="Times New Roman,Microsoft YaHei,serif" font-size="${size}" text-anchor="${anchor}" dominant-baseline="${this.textBaseline==='top'?'hanging':'central'}" fill="${this.fillStyle}"${attrs()}>${escape(text)}</text>`)}
+  measureText(text){measure.font=this.font;return measure.measureText(String(text))},
+  fillText(text,x,y){
+   // Encode label glyphs as high-resolution pixels: no remote fonts required.
+   const size=parseFloat(this.font);measure.font=this.font;
+   const m=measure.measureText(String(text)),pad=size*.25;
+   const width=Math.ceil(m.width+pad*2),height=Math.ceil(size*1.8);
+   const c=document.createElement('canvas'),scale=8;c.width=width*scale;c.height=height*scale;
+   const g=c.getContext('2d');g.scale(scale,scale);g.font=this.font;g.fillStyle=this.fillStyle;g.textBaseline='middle';g.fillText(String(text),pad,height/2);
+   const left=this.textAlign==='center'?x-width/2:this.textAlign==='right'?x-width+pad:x-pad;
+   const top=this.textBaseline==='top'?y-size*.3:y-height/2;
+   parts.push(`<image x="${left}" y="${top}" width="${width}" height="${height}" href="${c.toDataURL('image/png')}"${attrs()}/>`);
+  }
+
  };paperPlot(ctx,width,height,points,id,true);
- return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}in" height="${h}in" viewBox="0 0 ${width} ${height}"><title>${escape(id)}</title>${parts.join('')}</svg>`;
+ return `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${w}in" height="${h}in" viewBox="0 0 ${width} ${height}" role="img"><title>${escape(id)}</title><desc>${escape(plotLabels(id).join(' / '))}. Curves and axes are vector; labels are embedded at 768 DPI, independent of installed fonts.</desc>${parts.join('')}</svg>`;
 }
-function exportSvg(){try{
- if(!result)throw Error('请先运行仿真');const id=$('exportPlot').value,points=exportPoints(id);if(!points.length)throw Error('本图暂无数据');
+async function exportSvg(){try{
+ if(!result)throw Error('请先运行仿真');validateFigureOptions();await document.fonts.ready;const id=$('exportPlot').value,points=exportPoints(id);if(!points.length)throw Error('本图暂无数据');
  const w=Number($('pngWidth').value),h=Number($('pngHeight').value);if(!(w>=2&&w<=16&&h>=2&&h<=16))throw Error('宽高须为2–16英寸');
- save('论文图-'+id+'.svg',figureSvg(w*96,h*96,points,id,w,h),'image/svg+xml;charset=utf-8');$('pngState').textContent='已导出 SVG 矢量图，可缩放，尺寸与当前设置一致';
+ save('论文图-'+id+'.svg',figureSvg(w*96,h*96,points,id,w,h),'image/svg+xml;charset=utf-8');$('pngState').textContent='已导出白底 SVG：曲线与坐标线为矢量，文字为高分辨率图层，跨电脑无需字体';
  }catch(e){$('pngState').textContent=e.message}
 }
 document.addEventListener('DOMContentLoaded',()=>{
  $('exportSvg').onclick=exportSvg;$('exportFigureCsv').onclick=exportFigureCsv;
- ['spectrumMax','spectrumScale','figureXLabel','figureYLabel','figureFont','figureLine'].forEach(id=>$(id).addEventListener('input',()=>{if(result)draw()}));
+ function loadTitles(){const key=figureTitleKey($('exportPlot').value),title=figureTitles[key]||{},range=plotRanges[key]||{};$('figureXLabel').value=title.x||'';$('figureYLabel').value=title.y||'';for(const k of ['xmin','xmax','ymin','ymax'])$(k).value=range[k]??'';if(result)draw()}
+ for(const id of ['figureXLabel','figureYLabel'])$(id).addEventListener('input',()=>{figureTitles[figureTitleKey($('exportPlot').value)]={x:$('figureXLabel').value.trim(),y:$('figureYLabel').value.trim()};if(result)draw()});
+ for(const id of ['exportPlot','analysisKind','timeAxis','phaseX','phaseY','spectrumScale'])$(id).addEventListener('change',loadTitles);
+ ['spectrumMax','spectrumScale','figureFont','figureLine'].forEach(id=>$(id).addEventListener('input',()=>{if(result)draw()}));
 });
 
 
