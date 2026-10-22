@@ -4,6 +4,7 @@ const {pathToFileURL}=require('node:url');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 const root=path.resolve(__dirname,'..');
 const out=path.resolve(process.argv[2]||path.join(root,'validation','export-check'));
+const select=async(page,id,value)=>page.locator(id).evaluate((el,value)=>{el.value=value;el.dispatchEvent(new Event('change',{bubbles:true}))},value);
 (async()=>{
  await fs.mkdir(out,{recursive:true});
  const browser=await chromium.launch({executablePath:process.env.CHROME_EXE||'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true,args:['--allow-file-access-from-files']});
@@ -13,11 +14,12 @@ const out=path.resolve(process.argv[2]||path.join(root,'validation','export-chec
   await page.goto(pathToFileURL(path.join(root,'振动AI实验助手.html')).href);
   await page.locator('#quickDefaults').click();await page.evaluate(()=>task());
   assert(await page.evaluate(()=>!!result?.stats?.points),'Real simulation missing');
+  await page.evaluate(()=>window.openModule?.('export',false));
   const results=[];
   for(const labels of ['automatic','Chinese-symbols']){
    for(const id of ['time','spectrum','phase','section','extra']){
-    if(id==='extra')await page.locator('#analysisKind').selectOption('correlation_dimension');
-    await page.locator('#exportPlot').selectOption(id);
+    if(id==='extra')await select(page,'#analysisKind','correlation_dimension');
+    await select(page,'#exportPlot',id);
     await page.locator('#figureXLabel').fill(labels==='automatic'?'':'时间 t（模型单位）');
     await page.locator('#figureYLabel').fill(labels==='automatic'?'':'位移 y₅（μm） / Ω²');
     for(const format of ['Png','Svg']){
@@ -32,25 +34,25 @@ const out=path.resolve(process.argv[2]||path.join(root,'validation','export-chec
    }
   }
   // A custom time-axis title must not label a spectrum or another state.
-  await page.locator('#exportPlot').selectOption('time');
+  await select(page,'#exportPlot','time');
   await page.locator('#figureXLabel').fill('仅时域使用的标题');
-  await page.locator('#exportPlot').selectOption('spectrum');
+  await select(page,'#exportPlot','spectrum');
   assert.notEqual(await page.locator('#figureXLabel').inputValue(),'仅时域使用的标题');
-  await page.locator('#exportPlot').selectOption('time');
+  await select(page,'#exportPlot','time');
   assert.equal(await page.locator('#figureXLabel').inputValue(),'仅时域使用的标题');
-  await page.locator('#timeAxis').selectOption('y1');
+  await select(page,'#timeAxis','y1');
   assert.equal(await page.locator('#figureXLabel').inputValue(),'');
-  await page.locator('#timeAxis').selectOption('y5');
+  await select(page,'#timeAxis','y5');
   assert.equal(await page.locator('#figureXLabel').inputValue(),'仅时域使用的标题');
   // Range settings are scoped to a plot and selected state/analysis as well.
   await page.locator('#xmin').fill('400');await page.locator('#xmax').fill('500');await page.locator('#applyRange').click();
-  await page.locator('#exportPlot').selectOption('spectrum');assert.equal(await page.locator('#xmin').inputValue(),'');
-  await page.locator('#exportPlot').selectOption('time');assert.equal(await page.locator('#xmin').inputValue(),'400');
+  await select(page,'#exportPlot','spectrum');assert.equal(await page.locator('#xmin').inputValue(),'');
+  await select(page,'#exportPlot','time');assert.equal(await page.locator('#xmin').inputValue(),'400');
   await page.locator('#autoRange').click();
   // Each additional analysis must export independently, with the right axis titles.
-  await page.locator('#exportPlot').selectOption('extra');
+  await select(page,'#exportPlot','extra');
   for(const kind of ['lyapunov','rms','histogram','autocorrelation','custom']){
-   await page.locator('#analysisKind').selectOption(kind);
+   await select(page,'#analysisKind',kind);
    for(const format of ['Png','Svg']){
     const pending=page.waitForEvent('download');await page.locator('#export'+format).click();
     const download=await pending;assert.equal(await download.failure(),null);
@@ -58,7 +60,7 @@ const out=path.resolve(process.argv[2]||path.join(root,'validation','export-chec
    }
   }
   // Large fonts and tall/wide physical sizes exercise margins and title fitting.
-  await page.locator('#exportPlot').selectOption('time');
+  await select(page,'#exportPlot','time');
   await page.locator('#figureXLabel').fill('时间 t & 激励相位 < Ωt（模型单位）');
   await page.locator('#figureYLabel').fill('位移响应 y₅ 与符号 μ、Ω²、λ（模型单位）');
   await page.locator('#figureFont').fill('24');
