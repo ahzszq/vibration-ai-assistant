@@ -1,6 +1,6 @@
 (() => {
  const entry=document.createElement('button');entry.className='text-button';entry.textContent='使用教程';entry.id='openGuide';entry.setAttribute('aria-haspopup','dialog');
- document.querySelector('.entry-modes').append(entry);
+ document.querySelector('.module-nav').append(entry);
  const modal=document.createElement('dialog');modal.className='guide-dialog';modal.setAttribute('aria-label','使用教程');
  modal.innerHTML=`<div class="guide-header"><strong>振动 AI · 使用教程</strong><button id="guideClose" class="secondary">关闭</button></div><p id="guideCount"></p><h2 id="guideTitle"></h2><div id="guideText"></div><div class="actions"><button id="guideRestart" class="secondary">从头开始</button><button id="guideLocate" class="secondary">查看对应位置</button><button id="guideBack" class="secondary">上一步</button><button id="guideNext">下一步</button></div><small>教程不会修改参数，也不会自动调用 AI 或运行计算。</small>`;
  document.body.append(modal);
@@ -25,7 +25,7 @@
   const el=document.querySelector(steps[index][2]);if(!el)return;
   for(let parent=el.parentElement;parent;parent=parent.parentElement)if(parent.tagName==='DETAILS')parent.open=true;
   if(el.tagName==='DETAILS')el.open=true;
-  modal.close();el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('guide-highlight');setTimeout(()=>el.classList.remove('guide-highlight'),3500);
+  modal.close();window.revealModuleTarget?.(el);el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('guide-highlight');setTimeout(()=>el.classList.remove('guide-highlight'),3500);
  };
  // Always visible, no first-visit storage or forced popup.
  const hint=document.createElement('button');hint.className='secondary';hint.textContent='新手教程 · 9 步上手';hint.onclick=open;
