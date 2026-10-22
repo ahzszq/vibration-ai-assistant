@@ -63,7 +63,7 @@ class Handler(BaseHTTPRequestHandler):
             job = parse_qs(urlparse(self.path).query).get('id', [''])[0]
             self.reply(200, PROGRESS.get(job, {'stage': 'waiting'}))
             return
-        if self.path not in ('/', '/index.html', '/assistant.js', '/main.js', '/analysis.js', '/styles.css', '/defaults.js'):
+        if self.path not in ('/', '/index.html', '/assistant.js', '/main.js', '/analysis.js', '/review.js', '/guide.js', '/styles.css', '/defaults.js'):
             self.send_error(404)
             return
         content = ('const defaults = ' + json.dumps(DEFAULTS) + ';').encode('utf-8') if self.path == '/defaults.js' else (ROOT / ('index.html' if self.path == '/' else self.path.lstrip('/'))).read_bytes()
