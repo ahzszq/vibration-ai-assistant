@@ -17,7 +17,7 @@
 | **汇报 PPT** | 16 页，含讲者备注；另有逐页 PNG 预览 | [`振动AI参赛汇报-v7-精修版.pptx`](参赛材料/振动AI参赛汇报-v7-精修版.pptx) · [`PPT预览/`](参赛材料/PPT预览/) |
 | 演示视频（可补充） | 2 分 14 秒 · 1080p 全程操作录屏，网页内可直接播放 | [`振动AI实验助手-演示视频.mp4`](参赛材料/振动AI实验助手-演示视频.mp4) |
 | 文档材料（可补充） | 项目简介、5 分钟讲稿、演示步骤、验证记录、提交清单 | [`参赛材料/`](参赛材料/) |
-| 测试材料（可补充） | 8 个自测/验证脚本 + 数值验证报告、灵敏度对照 | [`tests/`](tests/)、[`validation/`](validation/)、仓库根 `验证记录.txt` |
+| 测试材料（可补充） | 11 个自测/验证脚本 + 数值验证报告、灵敏度对照 | [`tests/`](tests/)、[`validation/`](validation/)、仓库根 `验证记录.txt` |
 | 原创性与授权（可补充） | 依赖清单、参考项目调研、许可证原文 | [`第三方许可证/`](第三方许可证/)、`开源调研与复用.md` |
 
 两个必交项都已就位：Demo 是在线可访问的网址，不是本地路径；PPT 在仓库里可直接下载。
@@ -79,17 +79,17 @@
 
 ```
 振动AI实验助手/
-├─ 振动AI实验助手.html   离线版，双击即用（1.55 MB）
+├─ 振动AI实验助手.html   离线版，双击即用（1.57 MB）
 ├─ docs/index.html                  GitHub Pages 站点（同一份单文件）
-├─ index.html  main.js  assistant.js  analysis.js  styles.css   服务版前端
+├─ index.html  modules.js  main.js  assistant.js  analysis.js  styles.css   服务版前端
 ├─ app.py  engine.py  physics.py  ai_workflow.py                服务版后端
 ├─ 安装并启动.cmd  启动.cmd                                   Windows 一键脚本
 ├─ requirements*.txt  Dockerfile  compose.yaml  Caddyfile        依赖与部署
 ├─ README.md  部署说明.md  开源调研与复用.md  THIRD_PARTY_NOTICES.md
-├─ 使用教程.md  guide.js  review.js        站内 9 步教程与导出核验
+├─ 使用教程.md  模块与图片调参说明.md  guide.js  review.js   站内 9 步教程与模块调参
 ├─ 验证记录.txt  新版验证记录.txt  原始默认值验证.json  示例AI实验结果.json
-├─ tests/                          8 个自测/验证脚本
-├─ validation/                     数值验证报告与灵敏度对照
+├─ tests/                          11 个自测/验证脚本
+├─ validation/                     数值验证报告、灵敏度对照、导出核验样图
 ├─ 第三方许可证/                    numpy / pypdf / pydantic / pdf.js
 └─ 参赛材料/                       16 页 PPT、PPT 预览、演示视频、项目简介、讲稿、提交清单
 ```
