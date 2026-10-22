@@ -1,0 +1,163 @@
+{
+  "analytic": [
+    {
+      "case": "exponential",
+      "steps": 40,
+      "dt": 0.025,
+      "max_abs_error": 8.666190431938503e-09,
+      "observed_order": null
+    },
+    {
+      "case": "exponential",
+      "steps": 80,
+      "dt": 0.0125,
+      "max_abs_error": 5.473057562710437e-10,
+      "observed_order": 3.9849790036795856
+    },
+    {
+      "case": "exponential",
+      "steps": 160,
+      "dt": 0.00625,
+      "max_abs_error": 3.43853834294805e-11,
+      "observed_order": 3.9924796919180388
+    },
+    {
+      "case": "exponential",
+      "steps": 320,
+      "dt": 0.003125,
+      "max_abs_error": 2.1542767569826538e-12,
+      "observed_order": 3.996519925138342
+    },
+    {
+      "case": "model_damped_oscillator",
+      "steps": 40,
+      "dt": 0.25,
+      "max_abs_error": 0.00025653030731086907,
+      "observed_order": null
+    },
+    {
+      "case": "model_damped_oscillator",
+      "steps": 80,
+      "dt": 0.125,
+      "max_abs_error": 1.5979059706773546e-05,
+      "observed_order": 4.0048748605134845
+    },
+    {
+      "case": "model_damped_oscillator",
+      "steps": 160,
+      "dt": 0.0625,
+      "max_abs_error": 9.93104243396381e-07,
+      "observed_order": 4.00809354325912
+    },
+    {
+      "case": "model_damped_oscillator",
+      "steps": 320,
+      "dt": 0.03125,
+      "max_abs_error": 6.192243888827886e-08,
+      "observed_order": 4.003410961437286
+    }
+  ],
+  "step_sensitivity": [
+    {
+      "NN": 64,
+      "rms": 1.375710176651392,
+      "peak": 1.772145658502953,
+      "mean": 1.3678891240723376,
+      "dominant_frequency": 0.15915494309189535,
+      "points": 6400,
+      "seconds": 0.16382600006181747,
+      "dt": 0.09817477042468103
+    },
+    {
+      "NN": 128,
+      "rms": 1.3948596885790028,
+      "peak": 1.6725434137657487,
+      "mean": 1.3923069046689645,
+      "dominant_frequency": 0.15915494309189535,
+      "points": 12800,
+      "seconds": 0.2919537000125274,
+      "dt": 0.04908738521234052
+    },
+    {
+      "NN": 256,
+      "rms": 1.3844765769684242,
+      "peak": 1.7560004726067646,
+      "mean": 1.3788911770023702,
+      "dominant_frequency": 0.15915494309189535,
+      "points": 25600,
+      "seconds": 0.5265220000874251,
+      "dt": 0.02454369260617026
+    },
+    {
+      "NN": 512,
+      "rms": 1.395671523578136,
+      "peak": 1.6737734293012285,
+      "mean": 1.3933064040019303,
+      "dominant_frequency": 0.15915494309189535,
+      "points": 51200,
+      "seconds": 1.004567199968733,
+      "dt": 0.01227184630308513
+    }
+  ],
+  "duration_sensitivity": [
+    {
+      "NT_total": 180,
+      "NT_start": 80,
+      "NN": 256,
+      "rms": 1.3844765769684242,
+      "peak": 1.7560004726067646,
+      "mean": 1.3788911770023702,
+      "dominant_frequency": 0.15915494309189535,
+      "points": 25600,
+      "seconds": 0.5293219999875873
+    },
+    {
+      "NT_total": 360,
+      "NT_start": 260,
+      "NN": 256,
+      "rms": 1.3913146680703694,
+      "peak": 1.7481382851878235,
+      "mean": 1.387429746049807,
+      "dominant_frequency": 0.15915494309189535,
+      "points": 25600,
+      "seconds": 0.9370765000348911
+    },
+    {
+      "NT_total": 720,
+      "NT_start": 620,
+      "NN": 256,
+      "rms": 1.3779791985095307,
+      "peak": 1.7566596726217443,
+      "mean": 1.370563329334678,
+      "dominant_frequency": 0.15915494309189535,
+      "points": 25600,
+      "seconds": 2.0115462000248954
+    },
+    {
+      "NT_total": 1440,
+      "NT_start": 1340,
+      "NN": 256,
+      "rms": 1.3745184780327973,
+      "peak": 1.7710911305523291,
+      "mean": 1.3658465999927631,
+      "dominant_frequency": 0.15915494309189535,
+      "points": 25600,
+      "seconds": 3.4498667999869213
+    }
+  ],
+  "step_256_vs_512_percent": {
+    "rms": 0.8021190101386441,
+    "peak": 4.912674670661038,
+    "dominant_frequency": 0.0
+  },
+  "duration_last_two_percent": {
+    "rms": 0.2517769336710821,
+    "peak": 0.8148342951773633,
+    "dominant_frequency": 0.0
+  },
+  "limits": [
+    "NN=512 is a comparison reference, not an exact solution.",
+    "No assertion of steady state, chaos, dimensional units or device accuracy.",
+    "Tests do not certify arbitrary parameter combinations or the browser implementation."
+  ]
+}
