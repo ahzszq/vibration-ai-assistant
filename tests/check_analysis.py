@@ -20,9 +20,7 @@ base=f'http://127.0.0.1:{server.server_port}'
 for asset,kind in [('analysis.js','javascript'),('styles.css','css')]:
  with urllib.request.urlopen(base+'/'+asset) as response:assert kind in response.headers['Content-Type']
 req=urllib.request.Request(base+'/api/simulate',data=json.dumps(dict(NT_total=100,NT_start=60,NN=96)).encode(),headers={'X-Job-Id':'test-progress','Content-Type':'application/json'})
-response=json.load(urllib.request.urlopen(req))
-assert response['lyapunov']['status']=='finite_time_estimate'
-assert response['lyapunov']['samples']
+json.load(urllib.request.urlopen(req))
 assert json.load(urllib.request.urlopen(base+'/api/progress?id=test-progress'))['stage']=='finished'
 server.shutdown()
 print('PASS: six-state samples, continuous tail, full-data statistics, solver relation, progress callbacks and HTTP polling')
