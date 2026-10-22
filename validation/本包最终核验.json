@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-22",
+  "browser_modules": "six tabs, real simulation/correlation, multimodal payload, apply/undo, mobile passed",
+  "browser_exports": "34 actual PNG/SVG downloads, per-plot titles/ranges, analyses, layout, pixel limit, guide passed",
+  "python_tests": [
+    "check_image.py",
+    "check_analysis.py",
+    "check_public.py"
+  ],
+  "js_tests": [
+    "check_chat_ui.cjs",
+    "check_modules.cjs",
+    "check_exports.cjs"
+  ],
+  "service_static_routes": {
+    "/": 200,
+    "/styles.css": 200,
+    "/defaults.js": 200,
+    "/main.js": 200,
+    "/assistant.js": 200,
+    "/analysis.js": 200,
+    "/review.js": 200,
+    "/guide.js": 200,
+    "/modules.js": 200
+  },
+  "docker_source_list_complete": true,
+  "docker_build_tested": false,
+  "standalone_docs_identical": true,
+  "ppt_slides": 13,
+  "video_bytes": 11941373,
+  "real_ai_or_vision_quality_evaluated": false,
+  "github_updated_by_this_delivery": false,
+  "ppt_video_updated_for_image_feature": false
+}
