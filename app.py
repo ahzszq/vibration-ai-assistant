@@ -9,7 +9,7 @@ import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from engine import simulate, REQUEST_DEADLINE
-from ai_workflow import parse_document, make_plan, execute_plan, execute_sweep, explain, completion, chat_turn
+from ai_workflow import parse_document, make_plan, execute_plan, execute_sweep, explain, completion, chat_turn, image_parameters
 from physics import DEFAULTS
 from engine import REQUEST_PROGRESS
 from urllib.parse import parse_qs
@@ -63,7 +63,7 @@ class Handler(BaseHTTPRequestHandler):
             job = parse_qs(urlparse(self.path).query).get('id', [''])[0]
             self.reply(200, PROGRESS.get(job, {'stage': 'waiting'}))
             return
-        if self.path not in ('/', '/index.html', '/assistant.js', '/main.js', '/analysis.js', '/review.js', '/guide.js', '/styles.css', '/defaults.js'):
+        if self.path not in ('/', '/index.html', '/assistant.js', '/main.js', '/analysis.js', '/review.js', '/guide.js', '/modules.js', '/styles.css', '/defaults.js'):
             self.send_error(404)
             return
         content = ('const defaults = ' + json.dumps(DEFAULTS) + ';').encode('utf-8') if self.path == '/defaults.js' else (ROOT / ('index.html' if self.path == '/' else self.path.lstrip('/'))).read_bytes()
@@ -77,7 +77,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_POST(self):
         if not self.allowed_request():
             return
-        if self.path not in ('/api/simulate', '/api/document', '/api/plan', '/api/execute', '/api/sweep', '/api/explain', '/api/test', '/api/chat'):
+        if self.path not in ('/api/simulate', '/api/document', '/api/plan', '/api/execute', '/api/sweep', '/api/explain', '/api/test', '/api/chat', '/api/image'):
             self.send_error(404)
             return
         if not LOCK.acquire(timeout=3):
@@ -113,6 +113,8 @@ class Handler(BaseHTTPRequestHandler):
                 result = execute_sweep(params)
             elif self.path == '/api/explain':
                 result = explain(params)
+            elif self.path == '/api/image':
+                result = image_parameters(params)
             elif self.path == '/api/chat':
                 result = chat_turn(params)
             else:
