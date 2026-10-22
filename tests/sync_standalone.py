@@ -7,9 +7,11 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def sync():
     modules = {name: (ROOT/name).read_text(encoding='utf-8').strip()
-               for name in ('main.js', 'assistant.js', 'analysis.js', 'review.js', 'guide.js')}
+               for name in ('main.js', 'assistant.js', 'analysis.js', 'review.js', 'guide.js', 'modules.js')}
     def replace_script(match):
         source = match.group(1).strip()
+        if source.startswith('/* Module navigation and image-assisted'):
+            return '<script>\n'+modules['modules.js']+'\n</script>'
         if source.startswith('const names='):
             return '<script>\n'+modules['main.js']+'\n</script>'
         if source.startswith('/* Secrets stay'):
