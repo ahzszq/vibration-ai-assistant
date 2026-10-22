@@ -12,7 +12,7 @@ main{grid-template-columns:300px minmax(0,1fr);gap:22px;padding:22px 3vw;max-wid
 #manualPanel{position:sticky;top:18px;max-height:calc(100vh - 36px);overflow:auto;padding:18px}#manualPanel>p{font-size:12px}#fields details{border-top:1px solid var(--line);padding-top:10px;margin-top:12px}#fields summary{color:#d8e4f2}#fields label{margin:9px 0;font-size:12px}#fields input{padding:7px 9px;font-size:14px}#manualPanel .actions button{font-size:12px;padding:9px 10px;flex:1}
 .metrics{margin:18px 0}.chart{padding:18px}.chart h2{font-size:15px}.chart small{font-size:12px}.grid{gap:16px}
 .result-actions{display:flex;align-items:center;gap:16px;margin:18px 0 26px;flex-wrap:wrap}.result-actions button{font-size:13px;padding:9px 14px}
-.auxiliary,.ai{padding:0;margin:14px 0}.auxiliary>summary,.ai>summary{padding:17px 20px;color:#d8e4f2;list-style-position:inside}.auxiliary summary small,.ai summary small{font-weight:400;margin-left:14px;font-size:12px}.tool-content{padding:0 20px 20px}.assistant-panel{border:0;background:transparent;padding:0;margin:0}.assistant-panel h2{display:none}.assistant-panel>p{font-size:13px}.chat-box{border:0;border-top:1px solid var(--line);border-radius:0;padding:14px 0}.chat-box>summary{font-size:14px;color:#d8e4f2}.chat-log{margin-top:16px}.tool-content button{width:auto}.notice{line-height:1.7}button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}button:disabled{cursor:not-allowed}canvas{background:transparent;border-radius:8px}
+.auxiliary,.ai{padding:0;margin:14px 0}.auxiliary>summary,.ai>summary{padding:17px 20px;color:#d8e4f2;list-style-position:inside}.auxiliary summary small,.ai summary small{font-weight:400;margin-left:14px;font-size:12px}.tool-content{padding:0 20px 20px}.assistant-panel{border:0;background:transparent;padding:0;margin:0}.assistant-panel h2{display:none}.assistant-panel>p{font-size:13px}.chat-box{border:0;border-top:1px solid var(--line);border-radius:0;padding:14px 0}.chat-box>summary{font-size:14px;color:#d8e4f2}.chat-log{margin-top:16px}.tool-content button{width:auto}.notice{line-height:1.7}button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}button:disabled{cursor:not-allowed}canvas{background:#0e192b;border-radius:8px}
 @media(max-width:1050px){main{grid-template-columns:270px minmax(0,1fr)}.grid{grid-template-columns:1fr}.metric strong{font-size:22px}}
 @media(max-width:760px){main{grid-template-columns:minmax(0,1fr);padding:16px}#manualPanel{position:static;max-height:none}.workspace-heading{align-items:flex-start}.workspace-heading h2{font-size:20px}.entry-modes{padding:10px 16px;gap:18px}.entry-modes span{display:none}header{padding:18px 16px}header>small{display:none}.metrics{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.metric{padding:10px}.metric small{font-size:10px}.metric strong{font-size:18px}.auxiliary summary small,.ai summary small{display:block;margin:5px 0 0 18px}.workspace-heading button{font-size:13px;padding:12px}.tool-content{padding:0 14px 16px}}
 
@@ -20,11 +20,26 @@ main{grid-template-columns:300px minmax(0,1fr);gap:22px;padding:22px 3vw;max-wid
 
 /* Paper-style time and power-spectrum figures. */
 #time,#spectrum{height:300px;background:transparent;border-radius:0}
+
+
+
+/* Continuous conversation controls keep the dark workspace palette. */
+.chat-memory{flex-wrap:wrap}.chat-memory small{flex-basis:100%;line-height:1.4}
+.chat-preferences label{font-size:11px;margin:6px 0}.chat-error{border:1px solid #b87865}
+.chat-dock #chatState{max-height:70px;overflow:auto;flex-shrink:0}
+.chat-dock .chat-log{min-height:100px}.chat-dock #dockBody{overflow:hidden}
+.chat-dock textarea{flex-shrink:0}.chat-dock .actions{flex-shrink:0}
+
+.review-card{border:1px solid #365577;background:linear-gradient(120deg,#12263a,#121f33);padding:20px;border-radius:14px;margin-bottom:24px}.review-intro{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.review-intro h2{font-size:21px;margin:6px 0}.review-intro p,.review-card>p,.review-details p{font-size:12px}.review-badge{color:#49e2be;border:1px solid #397361;border-radius:20px;padding:5px 10px;white-space:nowrap;font-size:12px}.review-steps{display:flex;gap:22px;flex-wrap:wrap;padding-left:22px;font-size:12px;color:#b7c9dd}.review-card button{font-size:13px;padding:10px 14px}.review-details summary{font-size:12px}.review-card table{margin-top:14px}.review-score-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:12px 0}.review-score-grid>div{background:#0c192a;border:1px solid #2d4662;border-radius:8px;padding:10px;font-size:11px;line-height:1.55}.review-score-grid b{color:#49e2be;font-size:12px}@media(max-width:800px){.review-score-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}.review-card #demoStatus{color:#b9d5eb;min-height:2em}@media(max-width:650px){.review-intro{display:block}.review-badge{display:inline-block;margin-top:8px}.review-intro h2{font-size:18px}.review-steps{gap:12px}.review-card{padding:15px}}
+
+.guide-dialog{width:min(620px,calc(100vw - 28px));border:1px solid #49e2be;border-radius:14px;background:#121f33;color:#edf4fc;padding:0;box-shadow:0 12px 80px #000d}.guide-dialog::backdrop{background:#020817aa}.guide-header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #293b53}.guide-header button{width:auto}.guide-dialog>p,.guide-dialog>h2,.guide-dialog>#guideText,.guide-dialog>.actions,.guide-dialog>small{display:block;margin-left:20px;margin-right:20px}.guide-dialog>p{color:#49e2be;font-size:12px;margin-top:20px;margin-bottom:4px}.guide-dialog h2{font-size:20px;margin-top:4px}.guide-dialog #guideText{min-height:110px;line-height:1.9;color:#bfd0e2}.guide-dialog .actions{justify-content:flex-end;margin-top:22px}.guide-dialog small{display:block;color:#8ea2bb;padding-bottom:18px}.guide-highlight{outline:3px solid #49e2be;outline-offset:6px;transition:outline .2s}.entry-modes #openGuide{margin-left:0}
+
+.guide-dialog{max-height:calc(100dvh - 24px);overflow:auto}.guide-dialog .actions{display:flex;flex-wrap:wrap;gap:8px}.guide-dialog .actions button{font-size:13px;padding:9px 12px}@media(max-width:620px){.entry-modes{flex-wrap:wrap}}
 </style>
 </head><body><header><div><div class="tag">RESEARCH LAB / 科研创新原型</div><h1>振动 AI · 实验助手</h1><p>设置参数，运行仿真，核对响应与统计结果</p></div><small>六状态非线性动力学<br>原始方程 · 本地数值求解</small></header>
 <nav class="entry-modes" aria-label="工作区导航"><a href="#workspace" class="active">仿真工作台</a><button id="openAssistant" class="text-button" aria-controls="assistantTools" aria-expanded="false">AI 辅助工具</button><span>初始配置使用原代码默认值</span></nav>
 <main><aside class="panel" id="manualPanel"><div class="panel-heading"><h2>仿真参数</h2><small>可手动编辑</small></div><p>选择配置后运行，或展开各组参数精确调整。</p><div class="actions"><button id="resetDefaults" class="secondary">恢复原代码默认值</button><button id="quickDefaults" class="secondary">快速试算配置</button></div><p id="parameterState" role="status">已加载原代码默认值。</p><div id="fields"></div><div id="advanced"></div><div class="actions"><button id="config" class="secondary">导出当前参数</button><button id="load" class="secondary">导入参数 JSON</button><input type="file" id="file" accept=".json" hidden></div></aside>
-<section id="workspace"><div class="workspace-heading"><div><div class="tag">SIMULATION WORKSPACE</div><h2>仿真工作台</h2><p>先设置左侧参数，再查看本次计算结果。</p></div><button id="run">运行物理仿真</button></div><div id="status" class="status" role="status">准备就绪。点击“运行物理仿真”生成真实计算结果。</div><div class="metrics"><div class="metric"><small>位移 RMS（含直流分量）</small><strong id="rms">—</strong></div><div class="metric"><small>绝对峰值</small><strong id="peak">—</strong></div><div class="metric"><small>去均值后的主频 / 周期时间单位⁻¹</small><strong id="freq">—</strong></div></div><details class="panel plot-options" open><summary>绘图与 PNG 导出设置</summary><div class="option-grid"><label>时域纵坐标<select id="timeAxis"></select></label><label>相轨线横坐标<select id="phaseX"></select></label><label>相轨线纵坐标<select id="phaseY"></select></label><label>附加分析<select id="analysisKind"><option value="lyapunov">最大有限时间李雅普诺夫指数</option><option value="rms">分窗 RMS（y5）</option><option value="histogram">位移分布（y5）</option><option value="autocorrelation">自相关（y5，末段）</option><option value="correlation_dimension">关联维数参考图</option><option value="custom">自定义状态投影</option></select></label><label>功率谱频率上限（空=全频段）<input id="spectrumMax" type="number" min="0" step="any" placeholder="自动：奈奎斯特频率"></label><label>功率谱纵轴<select id="spectrumScale"><option value="linear">单边 PSD（线性）</option><option value="db">单边 PSD（dB，参考值1模型单位）</option></select></label><label>X轴标题（空=自动）<input id="figureXLabel" type="text"></label><label>Y轴标题（空=自动）<input id="figureYLabel" type="text"></label><label>字体大小（基准画幅）<input id="figureFont" type="number" min="8" max="24" value="13"></label><label>曲线线宽（基准画幅）<input id="figureLine" type="number" min="0.2" max="3" step="0.1" value="0.6"></label><label>导出图<select id="exportPlot"><option value="time">时域图</option><option value="spectrum">功率谱</option><option value="phase">相图</option><option value="section">庞加莱截面</option><option value="extra">附加分析图</option></select></label><label>分辨率 DPI<input id="pngDpi" type="number" min="72" max="1200" value="600"></label><label>宽度（英寸）<input id="pngWidth" type="number" min="2" max="16" step="0.1" value="6"></label><label>高度（英寸）<input id="pngHeight" type="number" min="2" max="16" step="0.1" value="4"></label><label>X 最小值（空=自动）<input type="number" step="any" id="xmin"></label><label>X 最大值<input type="number" step="any" id="xmax"></label><label>Y 最小值<input type="number" step="any" id="ymin"></label><label>Y 最大值<input type="number" step="any" id="ymax"></label></div><div class="actions"><button id="applyRange" class="secondary">应用到所选图</button><button id="autoRange" class="secondary">恢复自动范围</button><button id="exportPng" class="secondary">导出 PNG</button><button id="exportSvg" class="secondary">导出 SVG 矢量图</button><button id="exportFigureCsv" class="secondary">导出本图 CSV</button><small id="pngState">6 × 4 英寸，600 DPI = 3600 × 2400 像素</small></div></details><div class="grid" id="charts"><div class="chart"><h2>时域图</h2><small id="timeNote">横轴：时间　纵轴：位移 y5</small><canvas id="time"></canvas></div><div class="chart"><h2>功率谱</h2><small>y5 去均值、Hann窗、单边功率谱密度（PSD）；频率单位为模型时间⁻¹。</small><canvas id="spectrum"></canvas></div><div class="chart"><h2>相轨线（y5–y6）</h2><small id="phaseNote">横轴：位移 y5　纵轴：速度 y6 = dy5/dt。显示末段连续积分点，未作稳态判定。</small><canvas id="phase"></canvas></div><div class="chart"><h2>庞加莱截面</h2><small>按激励频率2的周期，每周期采样一次</small><canvas id="section"></canvas></div></div><div class="chart extra-chart"><h2 id="extraTitle">附加动力学分析</h2><small id="extraNote">选择分析类型后显示；不自动作稳态或混沌判定。</small><canvas id="extra"></canvas></div><div class="result-actions"><button class="secondary" id="csv" disabled>导出图表 CSV</button><small id="resultMeta">尚无计算结果</small></div><details class="panel auxiliary" id="assistantTools"><summary>AI 辅助工具 <small>模型配置 · 文档实验 · 对话调参</small></summary><div id="assistant" class="tool-content"></div></details><p class="notice">研究边界：无真实设备数据或单位标定，不作混沌判定及工程安全结论。有限时长结果不等于已收敛的稳态；请增加仿真周期并减小步长复核。</p></section></main>
+<section id="workspace"><div class="workspace-heading"><div><div class="tag">SIMULATION WORKSPACE</div><h2>仿真工作台</h2><p>先设置左侧参数，再查看本次计算结果。</p></div><button id="run">运行物理仿真</button></div><div id="status" class="status" role="status">准备就绪。点击“运行物理仿真”生成真实计算结果。</div><div class="metrics"><div class="metric"><small>位移 RMS（含直流分量）</small><strong id="rms">—</strong></div><div class="metric"><small>绝对峰值</small><strong id="peak">—</strong></div><div class="metric"><small>去均值后的主频 / 周期时间单位⁻¹</small><strong id="freq">—</strong></div></div><details class="panel plot-options" open><summary>绘图与 PNG 导出设置</summary><div class="option-grid"><label>时域纵坐标<select id="timeAxis"></select></label><label>相轨线横坐标<select id="phaseX"></select></label><label>相轨线纵坐标<select id="phaseY"></select></label><label>附加分析<select id="analysisKind"><option value="lyapunov">最大有限时间李雅普诺夫指数</option><option value="rms">分窗 RMS（y5）</option><option value="histogram">位移分布（y5）</option><option value="autocorrelation">自相关（y5，末段）</option><option value="correlation_dimension">关联维数参考图</option><option value="custom">自定义状态投影</option></select></label><label>功率谱频率上限（空=全频段）<input id="spectrumMax" type="number" min="0" step="any" placeholder="自动：奈奎斯特频率"></label><label>功率谱纵轴<select id="spectrumScale"><option value="linear">单边 PSD（线性）</option><option value="db">单边 PSD（dB，参考值1模型单位）</option></select></label><label>所选图 X轴标题（空=自动）<input id="figureXLabel" type="text" maxlength="160"></label><label>所选图 Y轴标题（空=自动）<input id="figureYLabel" type="text" maxlength="160"></label><label>字体大小（基准画幅）<input id="figureFont" type="number" min="8" max="24" value="13"></label><label>曲线线宽（基准画幅）<input id="figureLine" type="number" min="0.2" max="3" step="0.1" value="0.6"></label><label>导出图<select id="exportPlot"><option value="time">时域图</option><option value="spectrum">功率谱</option><option value="phase">相图</option><option value="section">庞加莱截面</option><option value="extra">附加分析图</option></select></label><label>分辨率 DPI<input id="pngDpi" type="number" min="72" max="1200" value="600"></label><label>宽度（英寸）<input id="pngWidth" type="number" min="2" max="16" step="0.1" value="6"></label><label>高度（英寸）<input id="pngHeight" type="number" min="2" max="16" step="0.1" value="4"></label><label>X 最小值（空=自动）<input type="number" step="any" id="xmin"></label><label>X 最大值<input type="number" step="any" id="xmax"></label><label>Y 最小值<input type="number" step="any" id="ymin"></label><label>Y 最大值<input type="number" step="any" id="ymax"></label></div><div class="actions"><button id="applyRange" class="secondary">应用到所选图</button><button id="autoRange" class="secondary">恢复自动范围</button><button id="exportPng" class="secondary">导出 PNG</button><button id="exportSvg" class="secondary">导出 SVG（矢量曲线）</button><button id="exportFigureCsv" class="secondary">导出本图 CSV</button><small id="pngState">6 × 4 英寸，600 DPI = 3600 × 2400 像素</small></div></details><div class="grid" id="charts"><div class="chart"><h2>时域图</h2><small id="timeNote">横轴：时间　纵轴：位移 y5</small><canvas id="time"></canvas></div><div class="chart"><h2>功率谱</h2><small>y5 去均值、Hann窗、单边功率谱密度（PSD）；频率单位为模型时间⁻¹。</small><canvas id="spectrum"></canvas></div><div class="chart"><h2>相轨线（y5–y6）</h2><small id="phaseNote">横轴：位移 y5　纵轴：速度 y6 = dy5/dt。显示末段连续积分点，未作稳态判定。</small><canvas id="phase"></canvas></div><div class="chart"><h2>庞加莱截面</h2><small>按激励频率2的周期，每周期采样一次</small><canvas id="section"></canvas></div></div><div class="chart extra-chart"><h2 id="extraTitle">附加动力学分析</h2><small id="extraNote">选择分析类型后显示；不自动作稳态或混沌判定。</small><canvas id="extra"></canvas></div><div class="result-actions"><button class="secondary" id="csv" disabled>导出图表 CSV</button><small id="resultMeta">尚无计算结果</small></div><details class="panel auxiliary" id="assistantTools"><summary>AI 辅助工具 <small>模型配置 · 文档实验 · 对话调参</small></summary><div id="assistant" class="tool-content"></div></details><p class="notice">研究边界：无真实设备数据或单位标定，不作混沌判定及工程安全结论。有限时长结果不等于已收敛的稳态；请增加仿真周期并减小步长复核。</p></section></main>
 <button id="chatLauncher" class="chat-launcher" aria-controls="chatDock">AI 连续提问</button><aside id="chatDock" class="chat-dock" hidden><div class="dock-heading"><strong>AI 科研助手</strong><button id="closeChat" class="secondary">收起</button></div><div id="dockBody"></div></aside><script>const defaults = {"Omegaet": 1.0, "Omegaeh": 1.0, "Phih": 0.0, "Phit": 0.0, "Epsilon11": 0.01, "Epsilon13": 0.0125, "Epsilon22": 0.01, "Epsilon23": 0.0125, "Epsilon33": 0.02, "K11": 1.25, "K13": 0.25, "K22": 1.25, "K23": 0.25, "Ffb": 0.0, "Ffp": 0.0, "Ffm": 0.1, "Fat": 0.0, "Fah": 0.05, "HG": 1.3, "Hb1": 1.0, "Hb2": 1.0, "NT_total": 20000, "NT_start": 12000, "NN": 256};</script>
 <script>
 /* 六状态非线性动力学 · 浏览器端求解器
@@ -738,8 +753,9 @@ async function localRequestApi(path, data) {
   };
 })();
 </script>
-<script>const names={Omegaet:'激励频率1',Omegaeh:'激励频率2',Phih:'相位1',Phit:'相位2',Epsilon11:'阻尼系数1',Epsilon13:'耦合阻尼1',Epsilon22:'阻尼系数2',Epsilon23:'耦合阻尼2',Epsilon33:'阻尼系数3',K11:'刚度1',K13:'耦合刚度1',K22:'刚度2',K23:'耦合刚度2',Ffb:'力参数1',Ffp:'力参数2',Ffm:'力参数3',Fat:'激励振幅1',Fah:'激励振幅2',HG:'阈值1',Hb1:'阈值2',Hb2:'阈值3',NT_total:'总迭代周期',NT_start:'开始输出周期',NN:'每周期步数'};
-const $=id=>document.getElementById(id);let result=null,busy=false;const plotRanges={};
+<script>
+const names={Omegaet:'激励频率1',Omegaeh:'激励频率2',Phih:'相位1',Phit:'相位2',Epsilon11:'阻尼系数1',Epsilon13:'耦合阻尼1',Epsilon22:'阻尼系数2',Epsilon23:'耦合阻尼2',Epsilon33:'阻尼系数3',K11:'刚度1',K13:'耦合刚度1',K22:'刚度2',K23:'耦合刚度2',Ffb:'力参数1',Ffp:'力参数2',Ffm:'力参数3',Fat:'激励振幅1',Fah:'激励振幅2',HG:'阈值1',Hb1:'阈值2',Hb2:'阈值3',NT_total:'总迭代周期',NT_start:'开始输出周期',NN:'每周期步数'};
+const $=id=>document.getElementById(id);let result=null,busy=false;const plotRanges={},figureTitles={};
 const groups=[['系统参数',['Omegaet','Omegaeh','Phih','Phit']],['阻尼参数',['Epsilon11','Epsilon13','Epsilon22','Epsilon23','Epsilon33']],['刚度参数',['K11','K13','K22','K23']],['力参数',['Ffb','Ffp','Ffm','Fat','Fah']],['几何参数',['HG','Hb1','Hb2']],['计算参数',['NT_total','NT_start','NN']]];
 for(const [title,keys] of groups){const section=document.createElement('details');section.open=['系统参数','计算参数'].includes(title);const summary=document.createElement('summary');summary.textContent=title;section.append(summary);for(const k of keys){const l=document.createElement('label');l.textContent=`${names[k]} / ${k}`;const i=document.createElement('input');i.type='number';i.step=['NT_total','NT_start','NN'].includes(k)?'1':'any';i.value=defaults[k];i.id='p_'+k;i.title=`原代码默认值：${defaults[k]}`;i.addEventListener('input',()=>parameterChanged('已手动修改参数。'));l.append(i);section.append(l)}$('fields').append(section)}
 function parameterChanged(message){$('parameterState').textContent=message;if(result)$('resultMeta').textContent='参数已更改：图表仍对应上一次运行，需重新仿真。';document.dispatchEvent(new Event('parameters-changed'))}
@@ -749,10 +765,12 @@ $('quickDefaults').onclick=()=>fillParameters({...defaults,NT_total:100,NT_start
 function params(){return Object.fromEntries(Object.keys(defaults).map(k=>{const input=$('p_'+k);if(input.value.trim()==='')throw Error('请填写 '+k);const value=Number(input.value);if(!Number.isFinite(value))throw Error('请填写有效数值：'+k);return [k,value]}))}
 function save(name,text,type='application/json'){const u=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=u;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),30000)}
 // The same layout is used by the dark preview, white PNG and white SVG.
+function figureTitleKey(id){return id==='extra'?`${id}:${$('analysisKind')?.value}`:id==='time'?`${id}:${$('timeAxis')?.value}`:id==='phase'?`${id}:${$('phaseX')?.value}:${$('phaseY')?.value}`:id==='spectrum'?`${id}:${$('spectrumScale')?.value}`:id}
 function plotLabels(id){
  const kind=$('analysisKind')?.value;
  const base={time:['t (model time)',$('timeAxis')?.value||'y5'],spectrum:['f (1/model time)',$('spectrumScale')?.value==='db'?'10 log10 [PSD / 1 model unit]':'PSD [y5² / (1/model time)]'],phase:[$('phaseX')?.value||'y5',$('phaseY')?.value||'y6'],section:['y5','y6'],extra:kind==='lyapunov'?['t (model time)','Maximum finite-time Lyapunov exponent']:kind==='correlation_dimension'?['log r','log C(r)']:kind==='rms'?['t (model time)','RMS (y5)']:kind==='histogram'?['y5','Count']:kind==='autocorrelation'?['Lag (model time)','Autocorrelation']:[$('phaseX')?.value||'y5',$('phaseY')?.value||'y6']};
- return [$('figureXLabel')?.value.trim()||base[id][0],$('figureYLabel')?.value.trim()||base[id][1]];
+ const title=figureTitles[figureTitleKey(id)]||{};
+ return [title.x||base[id][0],title.y||base[id][1]];
 }
 function paperPlot(ctx,width,height,points,id,exportMode=false){
  const u=Math.min(width/460,height/300),font=Math.max(8,Number($('figureFont')?.value||13))*u;
@@ -764,17 +782,18 @@ function paperPlot(ctx,width,height,points,id,exportMode=false){
  for(const [x,y] of finite){xmin=Math.min(xmin,x);xmax=Math.max(xmax,x);ymin=Math.min(ymin,y);ymax=Math.max(ymax,y)}
  if(xmin===xmax){xmin-=.5;xmax+=.5}if(ymin===ymax){ymin-=.5;ymax+=.5}
  const yp=(ymax-ymin)*.06;ymin-=yp;ymax+=yp;if(id==='spectrum'&&$('spectrumScale')?.value!=='db')ymin=0;
- const range=plotRanges[id];if(range){xmin=range.xmin??xmin;xmax=range.xmax??xmax;ymin=range.ymin??ymin;ymax=range.ymax??ymax}
+ const range=plotRanges[figureTitleKey(id)];if(range){xmin=range.xmin??xmin;xmax=range.xmax??xmax;ymin=range.ymin??ymin;ymax=range.ymax??ymax}
  if(xmin===xmax)xmax=xmin+1;if(ymin===ymax)ymax=ymin+1;
  const fmt=v=>v===0?'0':Math.abs(v)>=1e4||Math.abs(v)<.001?v.toExponential(1):Number(v.toPrecision(4)).toString();
  ctx.font=`${font}px "Times New Roman", "Microsoft YaHei", serif`;
  const widest=Math.max(...Array.from({length:5},(_,i)=>ctx.measureText(fmt(ymin+(ymax-ymin)*i/4)).width));
- const left=Math.max(70*u,widest+38*u),right=width-24*u,top=20*u,bottom=height-62*u;
+ const xLabels=Array.from({length:5},(_,i)=>fmt(xmin+(xmax-xmin)*i/4));
+ const maxX=Math.max(...xLabels.map(s=>ctx.measureText(s).width));
+ const left=Math.max(70*u,widest+font/2+24*u),right=width-Math.max(24*u,ctx.measureText(xLabels[4]).width/2+8*u),top=20*u,bottom=height-Math.max(62*u,font*2.4+15*u);
  if(right-left<40*u||bottom-top<40*u)return;
  const xf=x=>left+(x-xmin)/(xmax-xmin)*(right-left),yf=y=>bottom-(y-ymin)/(ymax-ymin)*(bottom-top);
  ctx.strokeStyle=rule;ctx.fillStyle=ink;ctx.lineWidth=.8*u;ctx.strokeRect(left,top,right-left,bottom-top);
- const xLabels=Array.from({length:5},(_,i)=>fmt(xmin+(xmax-xmin)*i/4));
- const maxX=Math.max(...xLabels.map(s=>ctx.measureText(s).width));const xStep=maxX+12*u>(right-left)/4?2:1;
+ const xStep=maxX+12*u>(right-left)/4?2:1;
  for(let i=0;i<=4;i++){
   const x=left+(right-left)*i/4,y=bottom-(bottom-top)*i/4;
   ctx.beginPath();ctx.moveTo(x,bottom);ctx.lineTo(x,bottom-5*u);ctx.moveTo(left,y);ctx.lineTo(left+5*u,y);ctx.stroke();
@@ -782,9 +801,10 @@ function paperPlot(ctx,width,height,points,id,exportMode=false){
   if(i%xStep===0){ctx.textAlign='center';ctx.textBaseline='top';ctx.fillText(xLabels[i],x,bottom+9*u)}
  }
  const [xLabel,yLabel]=plotLabels(id);
- const labelFont=Math.min(font,Math.max(8*u,font*Math.min(1,(right-left)/(Math.max(1,ctx.measureText(xLabel).width)*1.08))));
+ const labelFont=font*Math.min(1,(right-left)/(Math.max(1,ctx.measureText(xLabel).width)*1.08));
  ctx.font=`${labelFont}px "Times New Roman", "Microsoft YaHei", serif`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(xLabel,(left+right)/2,height-17*u);
- const yFont=Math.min(font,Math.max(8*u,font*Math.min(1,(bottom-top)/(Math.max(1,ctx.measureText(yLabel).width)*1.08))));
+ ctx.font=`${font}px "Times New Roman", "Microsoft YaHei", serif`;
+ const yFont=font*Math.min(1,(bottom-top)/(Math.max(1,ctx.measureText(yLabel).width)*1.08));
  ctx.save();ctx.translate(17*u,(top+bottom)/2);ctx.rotate(-Math.PI/2);ctx.font=`${yFont}px "Times New Roman", "Microsoft YaHei", serif`;ctx.fillText(yLabel,0,0);ctx.restore();
  ctx.save();ctx.beginPath();ctx.rect(left,top,right-left,bottom-top);ctx.clip();
  ctx.strokeStyle=exportMode?'#173ab8':({phase:'#ffc978',section:'#e291ee',extra:'#ef7777',spectrum:'#83a9ff'}[id]||'#83a9ff');ctx.fillStyle=ctx.strokeStyle;ctx.lineWidth=Math.max(.5,Number($('figureLine')?.value||.6))*u;ctx.lineJoin='round';
@@ -833,7 +853,7 @@ $('assistant').innerHTML = `<div class="panel assistant-panel"><h2>AI 对话与�
 <label>API 密钥<input id="apiKey" type="password" autocomplete="off" placeholder="在这里输入，不要发到聊天中"></label>
 <label>模型ID<select id="modelPreset"><option value="">手动填写服务商提供的模型ID</option><option value="deepseek/deepseek-chat">DeepSeek Chat</option><option value="deepseek/deepseek-reasoner">DeepSeek Reasoner</option><option value="ollama_chat/qwen3:8b">本机 qwen3:8b（须自行安装模型）</option></select><input id="modelId" placeholder="openai/您的模型ID"></label>
 <div class="actions"><button id="testModel" class="secondary">测试模型连接</button><button id="clearKey" class="secondary">清除密钥</button></div><div class="preset-row"><button class="secondary provider-preset" data-provider="deepseek">DeepSeek</button><button class="secondary provider-preset" data-provider="dashscope">DashScope</button><button class="secondary provider-preset" data-provider="kimi">Kimi</button><button class="secondary provider-preset" data-provider="siliconflow">SiliconFlow</button><button class="secondary provider-preset" data-provider="openrouter">OpenRouter</button><button class="secondary provider-preset" data-provider="ollama">Ollama</button></div><small>兼容服务使用 openai/模型ID；预设只填写地址和示例模型，密钥由你自行输入。</small></details>
-<details class="chat-box"><summary>对话调参 / 结果追问</summary><div class="chat-memory">连续对话上下文 <select id="contextTurns"><option value="20">最近20条</option><option value="50">最近50条</option><option value="100" selected>最近100条</option><option value="200">最近200条</option></select><small>最多10万字符</small></div><div id="chatLog" class="chat-log" role="log"><div class="chat-msg assistant">可以直接说“把 Epsilon33 调到 0.04 并运行”，或“对 Epsilon33 从0.02扫到0.08，做8点扫频”。</div></div><textarea id="chatInput" placeholder="自然语言输入参数修改、运行、扫频或结果问题"></textarea><div class="actions"><button id="sendChat">发送并执行</button><button id="clearChat" class="secondary">清空对话</button></div><pre id="chatState"></pre></details>
+<details class="chat-box"><summary>对话调参 / 结果追问</summary><div class="chat-memory">连续对话上下文 <select id="contextTurns"><option value="20">最近20条</option><option value="50">最近50条</option><option value="100" selected>最近100条</option><option value="200">最近200条</option></select><small id="chatContextInfo"></small></div><div class="chat-preferences"><label><input id="rememberChat" type="checkbox"> 在此浏览器保存对话（不含密钥；共享电脑请勿开启）</label><label><input id="chatAutoExecute" type="checkbox"> 允许对话自动执行仿真 / 扫描</label></div><div id="chatLog" class="chat-log" role="log"><div class="chat-msg assistant">可以直接说“把 Epsilon33 调到 0.04 并运行”，或“对 Epsilon33 从0.02扫到0.08，做8点扫频”。</div></div><textarea id="chatInput" placeholder="自然语言输入参数修改、运行、扫频或结果问题"></textarea><div class="actions"><button id="sendChat">发送</button><button id="retryChat" class="secondary" disabled>重试提问</button><button id="clearChat" class="secondary">清空对话</button></div><pre id="chatState"></pre></details>
 <label>导入参数资料（PDF / TXT / CSV / JSON / MD，最多10MB）<input type="file" id="documentFile" accept=".pdf,.txt,.csv,.json,.md"></label><p id="documentState">文档先在本地提取；点击AI解析时，提取文本会发送到上方API地址。</p><details><summary>查看本地提取文本</summary><pre id="documentText">尚未导入</pre></details>
 <label>用自然语言描述实验<textarea id="requestText" placeholder="例如：保持其他参数不变，比较 Epsilon33=0.02、0.04、0.06 的响应。其余参数使用当前配置。"></textarea></label>
 <label><input type="checkbox" id="autoRun"> 参数明确且通过校验后自动运行（最多8组实验）</label>
@@ -845,13 +865,79 @@ $('assistant').innerHTML = `<div class="panel assistant-panel"><h2>AI 对话与�
 let importedDocument = null, plannedTask = null, experiment = null, assistantBusy = false;
 let chatHistory=[{role:'assistant',content:'可以直接说“把 Epsilon33 调到 0.04 并运行”，或“对 Epsilon33 从0.02扫到0.08，做8点扫频”。'}];
 function aiConfig(){return {api_key:$('apiKey').value.trim(),base_url:$('apiBase').value.trim(),model:$('modelId').value.trim()}}
-function chatMessage(role,text){chatHistory.push({role,content:text});const el=document.createElement('div');el.className='chat-msg '+role;el.textContent=text;$('chatLog').append(el);while($('chatLog').children.length>500)$('chatLog').firstElementChild.remove();$('chatLog').scrollTop=$('chatLog').scrollHeight}
+const CHAT_STORE='vibration-ai-chat-v1';
+let chatStorageNotice='',lastFailedMessage='';
+function persistChat(){
+ if(!$('rememberChat').checked)return;
+ try{localStorage.setItem(CHAT_STORE,JSON.stringify({version:1,messages:chatHistory,context:Number($('contextTurns').value)||100}));chatStorageNotice='已在此浏览器保存对话';}
+ catch{chatStorageNotice='浏览器无法保存；请导出对话备份';}
+}
+function selectedChatContext(history=chatHistory){
+ const limit=Number($('contextTurns').value)||100,selected=[];let chars=0;
+ for(const h of history.slice(-limit).reverse()){
+  if(h.error)continue;
+  const content=String(h.content).slice(0,12000);
+  if(chars+content.length>80000)break;
+  selected.unshift({role:h.role,content});chars+=content.length;
+ }
+ return {messages:selected,chars};
+}
+function updateChatContext(){const c=selectedChatContext();$('chatContextInfo').textContent=`历史 ${chatHistory.length} 条 · 上下文 ${c.messages.length} 条 / ${c.chars.toLocaleString()} 字符（最多8万）`;}
+function renderChatMessage(h){const el=document.createElement('div');el.className='chat-msg '+h.role+(h.error?' chat-error':'');el.textContent=h.content;$('chatLog').append(el);}
+function renderChat(){ $('chatLog').replaceChildren();chatHistory.forEach(renderChatMessage);$('chatLog').scrollTop=$('chatLog').scrollHeight;updateChatContext();}
+function chatMessage(role,text,error=false){
+ const h={role,content:text,time:new Date().toISOString(),...(error?{error:true}:{})};
+ chatHistory.push(h);renderChatMessage(h);$('chatLog').scrollTop=$('chatLog').scrollHeight;
+ persistChat();updateChatContext();
+}
+function restoreChat(){
+ try{const raw=localStorage.getItem(CHAT_STORE);if(!raw)return;const data=JSON.parse(raw);
+  if(data.version!==1||!Array.isArray(data.messages))return;
+  chatHistory=data.messages.filter(h=>h&&['user','assistant'].includes(h.role)&&typeof h.content==='string').map(h=>({role:h.role,content:h.content,time:h.time,error:!!h.error}));
+  if(!chatHistory.length)return;
+  $('rememberChat').checked=true;if([20,50,100,200].includes(data.context))$('contextTurns').value=String(data.context);
+  renderChat();$('chatState').textContent='已恢复对话记录。当前参数和计算结果仍以本页为准；模型密钥需重新填写。';
+ }catch{chatStorageNotice='无法恢复本地记录，可继续新对话';}
+}
 function applyChatPatch(patch){if(!patch||!Object.keys(patch).length)return;fillParameters({...params(),...patch},'AI对话已修改参数：'+Object.entries(patch).map(([k,v])=>`${k}=${v}`).join('、'));}
-async function sendChat(){if(assistantBusy||busy)return;const message=$('chatInput').value.trim();if(!message)return;chatMessage('user',message);$('chatInput').value='';$('chatState').textContent='AI正在解析…';setAssistantBusy(true);try{const r=await api('chat',{config:aiConfig(),message,base:params(),history:chatHistory.slice(0,-1).slice(-Number($('contextTurns')?.value||100)),results:experiment?.runs.map(r=>({name:r.name,params:r.result.params,stats:r.result.stats})).slice(-8)||(result?[{params:result.params,stats:result.stats}]:[])});const a=r.action||{};if(a.patch&&Object.keys(a.patch).length){applyChatPatch(a.patch);chatMessage('assistant',(a.reply||'已应用参数修改')+'\n已更新手动参数，可点击运行物理仿真。');if(/运行|仿真|计算/.test(message)){await runManualFromChat()}}else if(a.sweep){chatMessage('assistant',(a.reply||'已识别扫频请求')+'\n正在执行本地扫频…');const s=await api('sweep',{base:params(),sweep:a.sweep});renderSweep(s);chatMessage('assistant',`扫频完成，共${s.runs.length}组；可在下方查看RMS、峰值和主频。`)}else if(/^(运行|开始仿真|运行仿真|重新计算)[。！!\s]*$/.test(message)){await runManualFromChat();chatMessage('assistant','已使用当前手动参数完成仿真。')}else chatMessage('assistant',a.reply||'未识别到可执行的参数操作。');$('chatState').textContent=`已保留 ${chatHistory.length} 条消息；本次最多发送最近 ${$('contextTurns')?.value||100} 条，上限10万字符。`;}catch(e){chatMessage('assistant','操作失败：'+e.message);$('chatState').textContent='操作失败'}finally{setAssistantBusy(false)}}
+function chatRequestsRun(message){
+ // Conservative: negated instructions never trigger a computation.
+ if(/(?:不|别|勿|不要|不用|无需|暂缓|取消|停止).{0,12}(?:运行|仿真|计算|执行)/.test(message))return false;
+ return /(?:运行|开始仿真|重新计算|执行仿真)/.test(message);
+}
+async function sendChat(){
+ if(assistantBusy||busy)return;
+ const message=$('chatInput').value.trim();if(!message)return;
+ if(message.length>5000){$('chatState').textContent='单次问题最多5000字符，请拆分提问。';return;}
+ const context=selectedChatContext();
+ chatMessage('user',message);$('chatInput').value='';lastFailedMessage='';
+ $('chatState').textContent='AI正在回答…';$('chatLog').setAttribute?.('aria-busy','true');
+ const started=Date.now();setAssistantBusy(true);
+ try{
+  const latest=result?[{name:'当前显示的实验',params:result.params,stats:result.stats}]:[];
+  const recent=experiment?.runs?.map(r=>({name:r.name,params:r.result.params,stats:r.result.stats})).slice(-7)||[];
+  const r=await api('chat',{config:aiConfig(),message,base:params(),history:context.messages,results:[...latest,...recent]});
+  const a=r.action||{};
+  if(a.patch&&Object.keys(a.patch).length){
+   applyChatPatch(a.patch);chatMessage('assistant',(a.reply||'已应用参数修改')+'\n已更新参数：'+Object.entries(a.patch).map(([k,v])=>`${k}=${v}`).join('、'));
+   if($('chatAutoExecute').checked&&chatRequestsRun(message)){await runManualFromChat();chatMessage('assistant','已完成本地仿真。RMS='+result.stats.rms+'；峰值='+result.stats.peak+'；主频='+result.stats.dominant_frequency+'（模型时间⁻¹）。');}
+   else chatMessage('assistant','尚未运行，请点击“运行物理仿真”，或开启对话自动执行后明确要求运行。');
+  }else if(a.sweep){
+   chatMessage('assistant',(a.reply||'已识别参数扫描')+`\n扫描方案：${a.sweep.param}，${a.sweep.from} → ${a.sweep.to}，${a.sweep.n} 点。`);
+   if($('chatAutoExecute').checked&& !/(?:不|别|勿|不要|不用|无需|暂缓|取消|停止).{0,12}(?:运行|仿真|计算|执行|扫)/.test(message)){
+    const scan=await api('sweep',{base:params(),sweep:a.sweep});renderSweep(scan);chatMessage('assistant',`参数扫描已完成，共${scan.runs.length}组；结果可在实验表格中查看。`);
+   }else chatMessage('assistant','扫描尚未执行。确认方案后可开启对话自动执行并重新提出扫描要求。');
+  }else if($('chatAutoExecute').checked&&/^(运行|开始仿真|运行仿真|重新计算)[。！!\s]*$/.test(message)){
+   await runManualFromChat();chatMessage('assistant','已使用当前参数完成本地仿真。');
+  }else chatMessage('assistant',a.reply||'未识别到操作，请说明参数名或具体问题。');
+  $('chatState').textContent=`本轮完成 · ${((Date.now()-started)/1000).toFixed(1)} 秒。${chatStorageNotice}`;
+ }catch(e){lastFailedMessage=message;chatMessage('assistant','操作失败：'+e.message+'\n如已执行部分调参，请核对当前参数；重试会使用当前参数。',true);$('chatState').textContent='请求失败；可编辑问题后发送，或点击“重试提问”。';}
+ finally{$('chatLog').setAttribute?.('aria-busy','false');setAssistantBusy(false);updateChatContext();}
+}
 async function runManualFromChat(){const r=await api('simulate',params());experiment={runs:[{name:'AI对话仿真',result:r}],generated_at:new Date().toISOString()};$('exportTask').disabled=false;show(r);$('parameterState').textContent='已按AI对话修改后的参数完成一次物理仿真。'}
 function renderSweep(s){experiment={runs:s.runs.map(x=>({name:`${s.param}=${x.value}`,result:x.result})),note:s.note,generated_at:new Date().toISOString()};$('exportTask').disabled=false;const select=$('caseSelect');select.replaceChildren();experiment.runs.forEach((r,i)=>{const op=document.createElement('option');op.value=i;op.textContent=r.name;select.append(op)});select.disabled=false;const table=$('comparisonTable');table.replaceChildren();addRow(table,['扫频参数','RMS','绝对峰值','主频（未标定）'],true);s.runs.forEach(x=>addRow(table,[`${s.param}=${x.value}`,x.result.stats.rms.toFixed(6),x.result.stats.peak.toFixed(6),x.result.stats.dominant_frequency.toFixed(6)]));if(s.runs[0])show(s.runs[0].result);$('planState').textContent=s.note}
 async function api(path,data){return requestApi(path,data)}
-function setAssistantBusy(value){assistantBusy=value;window.assistantIsBusy=()=>assistantBusy;const locked=value||busy;for(const id of ['planTask','testModel','documentFile','provider','modelPreset','apiBase','apiKey','modelId','clearKey','run','sendChat','clearChat','editPlan','resetDefaults','quickDefaults','load'])$(id).disabled=locked;$('runPlan').disabled=locked||!plannedTask||plannedTask.plan.status!=='ready';$('explainTask').disabled=locked||!experiment;$('editPlan').disabled=locked||!plannedTask||plannedTask.plan.status!=='ready';document.querySelectorAll('#fields input,#advanced input,.provider-preset').forEach(el=>el.disabled=locked);}
+function setAssistantBusy(value){assistantBusy=value;window.assistantIsBusy=()=>assistantBusy;const locked=value||busy;for(const id of ['planTask','testModel','documentFile','provider','modelPreset','apiBase','apiKey','modelId','clearKey','run','sendChat','clearChat','rememberChat','chatAutoExecute','editPlan','resetDefaults','quickDefaults','load'])$(id).disabled=locked;$('runPlan').disabled=locked||!plannedTask||plannedTask.plan.status!=='ready';$('explainTask').disabled=locked||!experiment;$('editPlan').disabled=locked||!plannedTask||plannedTask.plan.status!=='ready';document.querySelectorAll('#fields input,#advanced input,.provider-preset').forEach(el=>el.disabled=locked);$('retryChat').disabled=locked||!lastFailedMessage;}
 document.addEventListener('task-state-changed',()=>setAssistantBusy(assistantBusy));
 async function action(fn){if(assistantBusy||busy)return;setAssistantBusy(true);try{await fn()}catch(e){$('planState').textContent='操作失败：'+e.message}finally{setAssistantBusy(false)}}
 function invalidate(){plannedTask=null;$('runPlan').disabled=true;$('planCase').disabled=true;$('editPlan').disabled=true;$('planTable').replaceChildren();$('planState').textContent='需求、文档或手动参数已更改，请重新解析。'}
@@ -859,7 +945,20 @@ document.addEventListener('parameters-changed',invalidate);
 $('requestText').addEventListener('input',invalidate);
 $('provider').onchange=()=>{const kind=$('provider').value;if(kind==='deepseek'){$('apiBase').value='https://api.deepseek.com';$('modelId').value='deepseek/deepseek-chat'}else if(kind==='ollama'){$('apiBase').value='http://127.0.0.1:11434/v1';$('modelId').value='ollama_chat/qwen3:8b';$('apiKey').value=''}else{$('apiBase').value=kind==='native'?'':'https://api.openai.com/v1';$('modelId').value=''}};
 const presets={deepseek:['https://api.deepseek.com','deepseek/deepseek-chat'],dashscope:['https://dashscope.aliyuncs.com/compatible-mode/v1','openai/qwen-plus'],kimi:['https://api.moonshot.cn/v1','openai/moonshot-v1-8k'],siliconflow:['https://api.siliconflow.cn/v1','openai/deepseek-ai/DeepSeek-V3'],openrouter:['https://openrouter.ai/api/v1','openai/deepseek/deepseek-chat'],ollama:['http://127.0.0.1:11434/v1','ollama_chat/qwen3:8b']};document.querySelectorAll('.provider-preset').forEach(b=>b.onclick=()=>{const p=presets[b.dataset.provider];if($('apiBase').value!==p[0])$('apiKey').value='';$('apiBase').value=p[0];$('modelId').value=p[1];$('provider').value=b.dataset.provider==='ollama'?'ollama':'compatible';$('planState').textContent='已套用'+b.textContent+'连接预设，请填写自己的密钥；模型ID可自行修改。'});
-$('sendChat').onclick=sendChat;$('clearChat').onclick=()=>{chatHistory=[{role:'assistant',content:'对话已清空。请输入新的调参要求。'}];$('chatLog').innerHTML='<div class="chat-msg assistant">对话已清空。请输入新的调参要求。</div>'};$('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)){e.preventDefault();sendChat()}});
+$('sendChat').onclick=sendChat;
+$('retryChat').onclick=()=>{if(lastFailedMessage){$('chatInput').value=lastFailedMessage;sendChat()}};
+$('clearChat').onclick=()=>{
+ chatHistory=[{role:'assistant',content:'新对话已开始。当前手动参数和已有仿真结果保留。'}];lastFailedMessage='';
+ try{localStorage.removeItem(CHAT_STORE)}catch{}
+ renderChat();persistChat();$('chatState').textContent='已新建对话。';$('retryChat').disabled=true;
+};
+$('contextTurns').addEventListener('change',()=>{updateChatContext();persistChat()});
+$('rememberChat').addEventListener('change',()=>{
+ if($('rememberChat').checked)persistChat();else{try{localStorage.removeItem(CHAT_STORE)}catch{}chatStorageNotice='仅在本页内存保留对话';}
+ $('chatState').textContent=chatStorageNotice;
+});
+$('chatInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&(e.ctrlKey||e.metaKey)&&!e.isComposing){e.preventDefault();sendChat()}});
+restoreChat();updateChatContext();
 $('modelPreset').onchange=()=>{const m=$('modelPreset').value;if(!m)return;$('modelId').value=m;if(m.startsWith('deepseek/')){$('apiBase').value='https://api.deepseek.com';$('provider').value='deepseek'}else if(m.startsWith('ollama')){$('apiBase').value='http://127.0.0.1:11434/v1';$('provider').value='ollama';$('apiKey').value=''}};
 $('clearKey').onclick=()=>{$('apiKey').value='';$('planState').textContent='本页密钥已清除。服务端不保存密钥。'};
 $('testModel').onclick=()=>action(async()=>{$('planState').textContent='正在实际调用模型…';const r=await api('test',{config:aiConfig()});$('planState').textContent=r.message});
@@ -895,7 +994,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  const panel=$('extra').parentElement,actions=document.createElement('div');actions.className='actions';actions.style.marginBottom='14px';
  for(const [kind,label] of [['lyapunov','李雅普诺夫指数'],['correlation_dimension','关联维数参考图']]){
   const button=document.createElement('button');button.type='button';button.className='secondary';button.textContent=label;
-  button.onclick=()=>{$('analysisKind').value=kind;delete plotRanges.extra;updateExtra();if(!result)$('extraNote').textContent='已选择'+label+'，请先运行仿真，完成后自动显示。';panel.scrollIntoView({behavior:'smooth',block:'center'})};actions.append(button);
+  button.onclick=()=>{$('analysisKind').value=kind;$('analysisKind').dispatchEvent(new Event('change'));updateExtra();if(!result)$('extraNote').textContent='已选择'+label+'，请先运行仿真，完成后自动显示。';panel.scrollIntoView({behavior:'smooth',block:'center'})};actions.append(button);
  }
  panel.prepend(actions);
 });
@@ -927,20 +1026,26 @@ function exportPoints(id){
  if(id==='time')return (result.states||[]).map(r=>[r[0],r[1+stateIndex($('timeAxis').value)]]);
  return id==='spectrum'?spectrumPoints():result.poincare;
 }
+function validateFigureOptions(){
+ const font=Number($('figureFont').value),line=Number($('figureLine').value);
+ if(!Number.isFinite(font)||font<8||font>24)throw Error('字体大小须为8–24');
+ if(!Number.isFinite(line)||line<.2||line>3)throw Error('曲线线宽须为0.2–3');
+ for(const label of plotLabels($('exportPlot').value))if(label.length>160)throw Error('轴标题最多160字符，请缩短标题');
+}
 async function exportPng(){try{
- if(!result)throw Error('请先运行仿真');
+ if(!result)throw Error('请先运行仿真');validateFigureOptions();await document.fonts.ready;
  const id=$('exportPlot').value,dpi=Number($('pngDpi').value),w=Number($('pngWidth').value),h=Number($('pngHeight').value);
  if(!Number.isFinite(dpi)||dpi<72||dpi>1200||!Number.isFinite(w)||!Number.isFinite(h)||w<2||w>16||h<2||h>16)throw Error('DPI须为72–1200，宽高须为2–16英寸');
  if(w*h*dpi*dpi>24000000)throw Error('导出最多2400万像素，请降低DPI或尺寸');
  const out=document.createElement('canvas');out.width=Math.round(w*dpi);out.height=Math.round(h*dpi);const ctx=out.getContext('2d');
  const points=exportPoints(id);if(!points.length)throw Error('本图暂无数据');paperPlot(ctx,out.width,out.height,points,id,true);
- const blob=await new Promise(resolve=>out.toBlob(resolve,'image/png'));const output=pngWithDpi(new Uint8Array(await blob.arrayBuffer()),dpi),url=URL.createObjectURL(output),a=document.createElement('a');a.href=url;a.download=`振动分析-${id}-${dpi}dpi.png`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('pngState').textContent=`已导出 ${w} × ${h} 英寸，${dpi} DPI（${out.width} × ${out.height} 像素）`;
+ const blob=await new Promise(resolve=>out.toBlob(resolve,'image/png'));if(!blob)throw Error('图片生成失败，请降低分辨率');const output=pngWithDpi(new Uint8Array(await blob.arrayBuffer()),dpi);save(`振动分析-${id}-${dpi}dpi.png`,output,'image/png');$('pngState').textContent=`已导出 ${w} × ${h} 英寸，${dpi} DPI（${out.width} × ${out.height} 像素）`;
  }catch(e){$('pngState').textContent=e.message}}
 document.addEventListener('DOMContentLoaded',()=>{const chat=document.querySelector('.chat-box');chat.open=true;$('dockBody').append(chat);const configButton=document.createElement('button');configButton.className='secondary chat-config-link';configButton.textContent='模型配置 / 文档工具';configButton.onclick=()=>{$('assistantTools').open=true;const settings=$('assistant').querySelector('details');settings.open=true;$('assistantTools').scrollIntoView({behavior:'smooth'});$('chatDock').hidden=true};$('dockBody').prepend(configButton);const historyButton=document.createElement('button');historyButton.className='secondary';historyButton.textContent='导出对话记录';historyButton.onclick=()=>save('AI对话记录.json',JSON.stringify(chatHistory,null,2));chat.querySelector('.actions').append(historyButton);fillAxisOptions();['timeAxis','phaseX','phaseY','analysisKind'].forEach(id=>$(id)?.addEventListener('change',()=>{if(id==='timeAxis'&&result){const key=$('timeAxis').value;chart('time',(result.states||[]).map(r=>[r[0],r[1+stateIndex(key)]]))}if(id!=='timeAxis')draw()}));$('pngDpi')?.addEventListener('input',()=>{$('pngState').textContent=`${$('pngWidth').value} × ${$('pngHeight').value} 英寸，${$('pngDpi').value} DPI = ${Math.round($('pngWidth').value*$('pngDpi').value)} × ${Math.round($('pngHeight').value*$('pngDpi').value)} 像素`});['pngWidth','pngHeight'].forEach(id=>$(id)?.addEventListener('input',()=>$('pngDpi').dispatchEvent(new Event('input'))));$('exportPng')?.addEventListener('click',exportPng);updateExtra()});
 const oldDraw=window.draw;window.draw=function(){oldDraw?.();if(result){const key=$('timeAxis')?.value||'y5';$('timeNote').textContent=`横轴：时间　纵轴：状态 ${key}（全时段抽样显示）`;$('phase').parentElement.querySelector('h2').textContent=`相轨线（${$('phaseX').value}–${$('phaseY').value}）`;chart('time',(result.states||[]).map(r=>[r[0],r[1+(stateIndex(key))]]));const tail=result.state_tail;if(tail){chart('phase',tail.map(r=>[r[1+stateIndex($('phaseX').value)],r[1+stateIndex($('phaseY').value)]]),'#ff5252');$('phaseNote').textContent=`${$('phaseX').value}–${$('phaseY').value} 相轨线；末 ${result.sampling.phase_cycles} 个周期的连续积分点，未作稳态判定。`}updateExtra()}};
 
-$('applyRange').onclick=()=>{try{const range={};for(const k of ['xmin','xmax','ymin','ymax']){range[k]=$(k).value.trim()===''?null:Number($(k).value);if(range[k]!==null&&!Number.isFinite(range[k]))throw Error('范围须为有限数值')}if(range.xmin!==null&&range.xmax!==null&&range.xmin>=range.xmax||range.ymin!==null&&range.ymax!==null&&range.ymin>=range.ymax)throw Error('最小值必须小于最大值');plotRanges[$('exportPlot').value]=range;draw();$('pngState').textContent='已应用坐标范围，PNG导出使用同一范围'}catch(e){$('pngState').textContent=e.message}};
-$('autoRange').onclick=()=>{delete plotRanges[$('exportPlot').value];for(const k of ['xmin','xmax','ymin','ymax'])$(k).value='';draw()};
+$('applyRange').onclick=()=>{try{const range={};for(const k of ['xmin','xmax','ymin','ymax']){range[k]=$(k).value.trim()===''?null:Number($(k).value);if(range[k]!==null&&!Number.isFinite(range[k]))throw Error('范围须为有限数值')}if(range.xmin!==null&&range.xmax!==null&&range.xmin>=range.xmax||range.ymin!==null&&range.ymax!==null&&range.ymin>=range.ymax)throw Error('最小值必须小于最大值');plotRanges[figureTitleKey($('exportPlot').value)]=range;draw();$('pngState').textContent='已应用坐标范围，PNG导出使用同一范围'}catch(e){$('pngState').textContent=e.message}};
+$('autoRange').onclick=()=>{delete plotRanges[figureTitleKey($('exportPlot').value)];for(const k of ['xmin','xmax','ymin','ymax'])$(k).value='';draw()};
 
 
 
@@ -955,7 +1060,7 @@ function exportFigureCsv(){try{if(!result)throw Error('请先运行仿真');cons
 // A small vector drawing target for the shared paperPlot renderer.
 function figureSvg(width,height,points,id,w,h){
  const escape=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
- const parts=[],stack=[];let path='',transform='',clip='',count=0;
+ const parts=[],stack=[],measure=document.createElement('canvas').getContext('2d');let path='',transform='',clip='',count=0;
  const attrs=()=>` transform="${transform}" ${clip}`;
  const ctx={fillStyle:'#fff',strokeStyle:'#111',lineWidth:1,font:'13px Times New Roman',textAlign:'left',textBaseline:'middle',
   fillRect(x,y,w,h){parts.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${this.fillStyle}"${attrs()}/>` )},
@@ -966,25 +1071,137 @@ function figureSvg(width,height,points,id,w,h){
   stroke(){parts.push(`<path d="${path}" fill="none" stroke="${this.strokeStyle}" stroke-width="${this.lineWidth}" stroke-linejoin="round"${attrs()}/>` )},
   fill(){parts.push(`<path d="${path}" fill="${this.fillStyle}"${attrs()}/>` )},
   clip(){const name='clip'+count++;parts.push(`<defs><clipPath id="${name}"><path d="${path}"/></clipPath></defs>`);clip=`clip-path="url(#${name})"`},
-  save(){stack.push({transform,clip})},restore(){({transform,clip}=stack.pop())},
+  save(){stack.push({transform,clip,font:this.font,fillStyle:this.fillStyle,strokeStyle:this.strokeStyle,lineWidth:this.lineWidth,textAlign:this.textAlign,textBaseline:this.textBaseline})},restore(){const state=stack.pop();({transform,clip}=state);for(const k of ['font','fillStyle','strokeStyle','lineWidth','textAlign','textBaseline'])this[k]=state[k]},
   translate(x,y){transform+=` translate(${x} ${y})`},rotate(a){transform+=` rotate(${a*180/Math.PI})`},
-  measureText(text){return {width:String(text).length*parseFloat(this.font)*.58}},
-  fillText(text,x,y){const size=parseFloat(this.font),anchor=this.textAlign==='center'?'middle':this.textAlign==='right'?'end':'start';parts.push(`<text x="${x}" y="${y}" font-family="Times New Roman,Microsoft YaHei,serif" font-size="${size}" text-anchor="${anchor}" dominant-baseline="${this.textBaseline==='top'?'hanging':'central'}" fill="${this.fillStyle}"${attrs()}>${escape(text)}</text>`)}
+  measureText(text){measure.font=this.font;return measure.measureText(String(text))},
+  fillText(text,x,y){
+   // Encode label glyphs as high-resolution pixels: no remote fonts required.
+   const size=parseFloat(this.font);measure.font=this.font;
+   const m=measure.measureText(String(text)),pad=size*.25;
+   const width=Math.ceil(m.width+pad*2),height=Math.ceil(size*1.8);
+   const c=document.createElement('canvas'),scale=8;c.width=width*scale;c.height=height*scale;
+   const g=c.getContext('2d');g.scale(scale,scale);g.font=this.font;g.fillStyle=this.fillStyle;g.textBaseline='middle';g.fillText(String(text),pad,height/2);
+   const left=this.textAlign==='center'?x-width/2:this.textAlign==='right'?x-width+pad:x-pad;
+   const top=this.textBaseline==='top'?y-size*.3:y-height/2;
+   parts.push(`<image x="${left}" y="${top}" width="${width}" height="${height}" href="${c.toDataURL('image/png')}"${attrs()}/>`);
+  }
+
  };paperPlot(ctx,width,height,points,id,true);
- return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}in" height="${h}in" viewBox="0 0 ${width} ${height}"><title>${escape(id)}</title>${parts.join('')}</svg>`;
+ return `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" width="${w}in" height="${h}in" viewBox="0 0 ${width} ${height}" role="img"><title>${escape(id)}</title><desc>${escape(plotLabels(id).join(' / '))}. Curves and axes are vector; labels are embedded at 768 DPI, independent of installed fonts.</desc>${parts.join('')}</svg>`;
 }
-function exportSvg(){try{
- if(!result)throw Error('请先运行仿真');const id=$('exportPlot').value,points=exportPoints(id);if(!points.length)throw Error('本图暂无数据');
+async function exportSvg(){try{
+ if(!result)throw Error('请先运行仿真');validateFigureOptions();await document.fonts.ready;const id=$('exportPlot').value,points=exportPoints(id);if(!points.length)throw Error('本图暂无数据');
  const w=Number($('pngWidth').value),h=Number($('pngHeight').value);if(!(w>=2&&w<=16&&h>=2&&h<=16))throw Error('宽高须为2–16英寸');
- save('论文图-'+id+'.svg',figureSvg(w*96,h*96,points,id,w,h),'image/svg+xml;charset=utf-8');$('pngState').textContent='已导出 SVG 矢量图，可缩放，尺寸与当前设置一致';
+ save('论文图-'+id+'.svg',figureSvg(w*96,h*96,points,id,w,h),'image/svg+xml;charset=utf-8');$('pngState').textContent='已导出白底 SVG：曲线与坐标线为矢量，文字为高分辨率图层，跨电脑无需字体';
  }catch(e){$('pngState').textContent=e.message}
 }
 document.addEventListener('DOMContentLoaded',()=>{
  $('exportSvg').onclick=exportSvg;$('exportFigureCsv').onclick=exportFigureCsv;
- ['spectrumMax','spectrumScale','figureXLabel','figureYLabel','figureFont','figureLine'].forEach(id=>$(id).addEventListener('input',()=>{if(result)draw()}));
+ function loadTitles(){const key=figureTitleKey($('exportPlot').value),title=figureTitles[key]||{},range=plotRanges[key]||{};$('figureXLabel').value=title.x||'';$('figureYLabel').value=title.y||'';for(const k of ['xmin','xmax','ymin','ymax'])$(k).value=range[k]??'';if(result)draw()}
+ for(const id of ['figureXLabel','figureYLabel'])$(id).addEventListener('input',()=>{figureTitles[figureTitleKey($('exportPlot').value)]={x:$('figureXLabel').value.trim(),y:$('figureYLabel').value.trim()};if(result)draw()});
+ for(const id of ['exportPlot','analysisKind','timeAxis','phaseX','phaseY','spectrumScale'])$(id).addEventListener('change',loadTitles);
+ ['spectrumMax','spectrumScale','figureFont','figureLine'].forEach(id=>$(id).addEventListener('input',()=>{if(result)draw()}));
 });
 </script>
-</body></html>
+<script>
+/* Short, reproducible demonstrations. Every curve is computed by the solver. */
+(() => {
+ const card=document.createElement('section');card.className='review-card';card.setAttribute('aria-label','快速实验');
+ card.innerHTML=`<div class="review-intro"><div><span class="tag">从参数到可复现实验</span><h2>快速查看振动响应，比较阻尼影响</h2><p>面向已有动力学方程的科研试算：手动设置或 AI 调参 → 本地求解 → 分析与导出。</p></div><span class="review-badge">无需密钥可试算</span></div>
+ <ol class="review-steps"><li>设置实验参数</li><li>求解六状态方程</li><li>对比响应指标</li><li>导出图表与记录</li></ol>
+ <div class="actions"><button id="demoSingle">一键快速试算</button><button id="demoCompare" class="secondary">三组阻尼对比</button><button id="demoAI" class="secondary">向 AI 追问结果</button><button id="demoExport" class="secondary" disabled>导出对比记录</button></div>
+ <p id="demoStatus" role="status">试算将载入快速配置：180 周期、舍弃前80周期、每周期128步。原代码默认值可在左侧恢复；耗时取决于设备。</p>
+ <div id="demoComparison" hidden><div class="scroll-table"><table id="demoTable"></table></div><label>查看某组完整图表<select id="demoCase"></select></label><p id="demoConclusion"></p></div>
+ <details class="review-details"><summary>计算依据与适用范围</summary><p>数值由原始六状态方程计算，AI 用于需求解析、调参和结果问答。当前模型未进行设备单位标定；响应差异属于本次仿真对比，不直接代表工程改进。附加分析包含有限时间李雅普诺夫指数和关联维数参考图。</p><p>已有两项解析基准和步长 / 时长敏感性验证；验证脚本及报告见项目 validation 目录。对比试算使用较短窗口，论文使用前需单独复核收敛。</p></details>`;
+ $('workspace').prepend(card);
+ let demoExperiment=null;
+ const controls=['demoSingle','demoCompare','demoAI','demoCase'];
+ function locked(){return busy||Boolean(window.assistantIsBusy?.())}
+ function sync(){controls.forEach(id=>$(id).disabled=locked());$('demoExport').disabled=locked()||!demoExperiment}
+ document.addEventListener('task-state-changed',sync);
+ // AI operations also use setAssistantBusy rather than task-state-changed.
+ const observe=new MutationObserver(sync);observe.observe($('run'),{attributes:true,attributeFilter:['disabled']});
+ async function runDemo(compare){
+  if(locked())return;
+  busy=true;document.dispatchEvent(new Event('task-state-changed'));
+  const started=performance.now();let runs=[];
+  demoExperiment=null;$('demoExport').disabled=true;$('demoComparison').hidden=true;
+  const base={...defaults,NT_total:180,NT_start:80,NN:128};
+  const values=compare?[.02,.04,.06]:[defaults.Epsilon33];
+  try{
+   for(let i=0;i<values.length;i++){
+    const p={...base,Epsilon33:values[i]};
+    fillParameters(p,`快速实验 ${i+1}/${values.length}：Epsilon33=${values[i]}。`);
+    $('demoStatus').textContent=`正在求解第 ${i+1}/${values.length} 组，Epsilon33=${values[i]}；图表将显示本次真实计算结果…`;
+    // Yield once so the progress message appears before browser computation.
+    await new Promise(resolve=>setTimeout(resolve,30));
+    const r=await requestApi('simulate',p);runs.push({name:`Epsilon33=${values[i]}`,result:r});show(r);
+   }
+   demoExperiment={schema:'vibration-comparison-v1',generated_at:new Date().toISOString(),
+    origin:'local_solver',ai_used:false,changed_parameter:'Epsilon33',
+    elapsed_seconds:(performance.now()-started)/1000,
+    method:'Original six-state equations; fixed-step Runge–Kutta; mean-removed Hann one-sided PSD',
+    limits:'Short-window comparison, uncalibrated model units. No engineering or chaos conclusion.',runs};
+   const table=$('demoTable');table.replaceChildren();addRow(table,['阻尼 Epsilon33','位移 RMS','绝对峰值','主频（模型时间⁻¹）','RMS 相对基准变化'],true);
+   const baseline=runs[0].result.stats.rms;
+   for(const [i,run] of runs.entries()){
+    const s=run.result.stats,change=baseline?(s.rms/baseline-1)*100:null;
+    addRow(table,[run.result.params.Epsilon33,s.rms.toPrecision(7),s.peak.toPrecision(7),s.dominant_frequency.toPrecision(7),i===0?'基准':change==null?'基准为零':`${change>=0?'+':''}${change.toFixed(2)}%`]);
+   }
+   $('demoCase').replaceChildren();runs.forEach((r,i)=>{const option=document.createElement('option');option.value=i;option.textContent=r.name;$('demoCase').append(option)});
+   $('demoCase').value=String(runs.length-1);$('demoComparison').hidden=false;
+   $('demoConclusion').textContent=compare?'仅改变 Epsilon33，其他物理参数、初值、步长和输出窗口一致。正值表示 RMS 增大，负值表示减小；这不是最优参数搜索。':'本次结果来自实时积分，可向 AI 提问或导出完整记录。';
+   $('demoStatus').textContent=`完成 ${runs.length} 组真实计算，用时 ${demoExperiment.elapsed_seconds.toFixed(2)} 秒。可切换图表并导出含参数、指标和数据的记录。`;
+   $('status').textContent='快速实验完成。下方图表对应所选实验组。';
+  }catch(e){$('demoStatus').textContent=`实验未完成（已完成 ${runs.length}/${values.length} 组）：${e.message}。可重试。`;}
+  finally{busy=false;document.dispatchEvent(new Event('task-state-changed'));sync()}
+ }
+ $('demoSingle').onclick=()=>runDemo(false);$('demoCompare').onclick=()=>runDemo(true);
+ $('demoCase').onchange=()=>{const r=demoExperiment?.runs[Number($('demoCase').value)];if(r){fillParameters(r.result.params,'已载入对比组：'+r.name);show(r.result)}};
+ $('demoAI').onclick=()=>{
+  if(demoExperiment){experiment={runs:demoExperiment.runs,generated_at:demoExperiment.generated_at};$('exportTask').disabled=false;}
+  $('chatDock').hidden=false;
+  $('chatInput').value=demoExperiment?.runs.length>1?'请根据本次三组实验的真实统计量，比较 Epsilon33 对 RMS 和峰值的影响，区分计算事实与推测，并说明还需要哪些验证。':'请根据当前结果解释 RMS、峰值和主频，并说明本次仿真的局限。';
+  $('chatState').textContent='示例问题已填写，配置模型后点击发送。此次尚未调用 AI。';$('chatInput').focus();
+ };
+ $('demoExport').onclick=()=>{if(demoExperiment)save('阻尼对比实验记录.json',JSON.stringify(demoExperiment,null,2))};
+ sync();
+})();
+</script><script>
+(() => {
+ const entry=document.createElement('button');entry.className='text-button';entry.textContent='使用教程';entry.id='openGuide';entry.setAttribute('aria-haspopup','dialog');
+ document.querySelector('.entry-modes').append(entry);
+ const modal=document.createElement('dialog');modal.className='guide-dialog';modal.setAttribute('aria-label','使用教程');
+ modal.innerHTML=`<div class="guide-header"><strong>振动 AI · 使用教程</strong><button id="guideClose" class="secondary">关闭</button></div><p id="guideCount"></p><h2 id="guideTitle"></h2><div id="guideText"></div><div class="actions"><button id="guideRestart" class="secondary">从头开始</button><button id="guideLocate" class="secondary">查看对应位置</button><button id="guideBack" class="secondary">上一步</button><button id="guideNext">下一步</button></div><small>教程不会修改参数，也不会自动调用 AI 或运行计算。</small>`;
+ document.body.append(modal);
+ const steps=[
+  ['先看一组结果','点击“一键快速试算”即可实时计算，无需配置 AI。页面初始参数是原代码默认值；快速试算会改用短计算配置。正式研究可在左侧恢复默认值。','#demoSingle'],
+  ['手动调整参数','左侧可修改阻尼、刚度、激励与计算参数。修改后旧图仍属于上次运行，请重新点击“运行物理仿真”。NT_total 为总周期，NT_start 为舍弃的前段周期，NN 为每周期积分步数。','#manualPanel'],
+  ['读懂动力学图','时域图展示选定状态随时间变化；相轨线默认 y5–y6 连续轨迹；功率谱默认去均值、Hann窗、单边PSD；庞加莱截面每激励周期取一点。所有时间、频率均为模型单位。','#charts'],
+  ['切换附加分析','在“附加分析”下拉框选择李雅普诺夫指数、自相关或关联维数参考图。先运行仿真。有限时间指数和参考斜率都不能单独证明混沌。','#analysisKind'],
+  ['配置 AI 与连续提问','打开“AI 辅助工具 → 模型配置”，选择服务商、填写 API 地址、模型ID和自己的密钥，再测试连接。右下角“AI 连续提问”支持追问。默认只调参，自动执行须在对话中开启。密钥不保存。','#assistantTools'],
+  ['从 PDF 生成实验','在 AI 辅助工具中导入文本PDF或TXT/CSV/JSON/MD，查看本地提取文本，再描述需求并点击“AI解析需求与文档”。核对参数来源与实验计划后运行；扫描PDF当前不支持OCR。','#documentFile'],
+  ['比较参数影响','点击“三组阻尼对比”生成三次真实仿真，切换实验查看图表。表格只反映当前模型与计算窗口；论文结果须另做步长与时长复核。','#demoCompare'],
+  ['导出清晰图片','先运行，再在“导出图”选择目标，再设置该图的轴标题、字体、范围、宽高和DPI。标题按图分别保存，切换图或状态不会串用标题。建议6×4英寸、600 DPI，即3600×2400像素。PNG与SVG均为白底；网页保持深色。SVG曲线为矢量、文字内嵌768 DPI图层，免除接收电脑字体依赖；它不是全文字可编辑的纯矢量文件。CSV可核对当前图的数据。','#exportPlot'],
+  ['遇到问题如何检查','图空白：先运行并检查所选分析是否有数据。AI失败：检查模型ID、地址、额度及网络，密钥只填配置框。坐标不合适：恢复自动范围，清空自定义标题再试。保存原始参数和实验记录，才能复现结果。','#status']
+ ];let index=0;
+ function render(){const [title,text]=steps[index];$('guideCount').textContent=`${index+1} / ${steps.length}`;$('guideTitle').textContent=title;$('guideText').textContent=text;$('guideBack').disabled=index===0;$('guideNext').textContent=index===steps.length-1?'完成':'下一步';}
+ function open(){render();modal.showModal()}
+ entry.onclick=open;$('guideClose').onclick=()=>modal.close();
+ $('guideRestart').onclick=()=>{index=0;render()};
+ $('guideBack').onclick=()=>{if(index>0){index--;render()}};
+ $('guideNext').onclick=()=>{if(index<steps.length-1){index++;render()}else modal.close()};
+ $('guideLocate').onclick=()=>{
+  const el=document.querySelector(steps[index][2]);if(!el)return;
+  for(let parent=el.parentElement;parent;parent=parent.parentElement)if(parent.tagName==='DETAILS')parent.open=true;
+  if(el.tagName==='DETAILS')el.open=true;
+  modal.close();el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('guide-highlight');setTimeout(()=>el.classList.remove('guide-highlight'),3500);
+ };
+ // Always visible, no first-visit storage or forced popup.
+ const hint=document.createElement('button');hint.className='secondary';hint.textContent='新手教程 · 9 步上手';hint.onclick=open;
+ document.querySelector('.review-card .actions').append(hint);
+})();
+</script></body></html>
 
 
 
