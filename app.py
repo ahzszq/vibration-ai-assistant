@@ -8,7 +8,7 @@ import threading
 import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
-from engine import simulate, train_and_recommend, REQUEST_DEADLINE
+from engine import simulate, REQUEST_DEADLINE
 from ai_workflow import parse_document, make_plan, execute_plan, execute_sweep, explain, completion, chat_turn
 from physics import DEFAULTS
 from engine import REQUEST_PROGRESS
@@ -77,7 +77,7 @@ class Handler(BaseHTTPRequestHandler):
     def do_POST(self):
         if not self.allowed_request():
             return
-        if self.path not in ('/api/simulate', '/api/learn', '/api/document', '/api/plan', '/api/execute', '/api/sweep', '/api/explain', '/api/test', '/api/chat'):
+        if self.path not in ('/api/simulate', '/api/document', '/api/plan', '/api/execute', '/api/sweep', '/api/explain', '/api/test', '/api/chat'):
             self.send_error(404)
             return
         if not LOCK.acquire(timeout=3):
@@ -103,8 +103,6 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError('参数格式无效')
             if self.path == '/api/simulate':
                 result = simulate(params)
-            elif self.path == '/api/learn':
-                result = train_and_recommend(params)
             elif self.path == '/api/document':
                 result = parse_document(params)
             elif self.path == '/api/plan':
