@@ -1,0 +1,211 @@
+{
+  "ok": true,
+  "downloads": [
+    {
+      "labels": "automatic",
+      "id": "time",
+      "format": "Png",
+      "file": "automatic-time.png"
+    },
+    {
+      "labels": "automatic",
+      "id": "time",
+      "format": "Svg",
+      "file": "automatic-time.svg"
+    },
+    {
+      "labels": "automatic",
+      "id": "spectrum",
+      "format": "Png",
+      "file": "automatic-spectrum.png"
+    },
+    {
+      "labels": "automatic",
+      "id": "spectrum",
+      "format": "Svg",
+      "file": "automatic-spectrum.svg"
+    },
+    {
+      "labels": "automatic",
+      "id": "phase",
+      "format": "Png",
+      "file": "automatic-phase.png"
+    },
+    {
+      "labels": "automatic",
+      "id": "phase",
+      "format": "Svg",
+      "file": "automatic-phase.svg"
+    },
+    {
+      "labels": "automatic",
+      "id": "section",
+      "format": "Png",
+      "file": "automatic-section.png"
+    },
+    {
+      "labels": "automatic",
+      "id": "section",
+      "format": "Svg",
+      "file": "automatic-section.svg"
+    },
+    {
+      "labels": "automatic",
+      "id": "extra",
+      "format": "Png",
+      "file": "automatic-extra.png"
+    },
+    {
+      "labels": "automatic",
+      "id": "extra",
+      "format": "Svg",
+      "file": "automatic-extra.svg"
+    },
+    {
+      "labels": "Chinese-symbols",
+      "id": "time",
+      "format": "Png",
+      "file": "Chinese-symbols-time.png"
+    },
+    {
+      "labels": "Chinese-symbols",
+      "id": "time",
+      "format": "Svg",
+      "file": "Chinese-symbols-time.svg"
+    },
+    {
+      "labels": "Chinese-symbols",
+      "id": "spectrum",
+      "format": "Png",
+      "file": "Chinese-symbols-spectrum.png"
+    },
+    {
+      "labels": "Chinese-symbols",
+      "id": "spectrum",
+      "format": "Svg",
+      "file": "Chinese-symbols-spectrum.svg"
+    },
+    {
+      "labels": "Chinese-symbols",
+      "id": "phase",
+      "format": "Png",
+      "file": "Chinese-symbols-phase.png"
+    },
+    {
+      "labels": "Chinese-symbols",
+      "id": "phase",
+      "format": "Svg",
+      "file": "Chinese-symbols-phase.svg"
+    },
+    {
+      "labels": "Chinese-symbols",
+      "id": "section",
+      "format": "Png",
+      "file": "Chinese-symbols-section.png"
+    },
+    {
+      "labels": "Chinese-symbols",
+      "id": "section",
+      "format": "Svg",
+      "file": "Chinese-symbols-section.svg"
+    },
+    {
+      "labels": "Chinese-symbols",
+      "id": "extra",
+      "format": "Png",
+      "file": "Chinese-symbols-extra.png"
+    },
+    {
+      "labels": "Chinese-symbols",
+      "id": "extra",
+      "format": "Svg",
+      "file": "Chinese-symbols-extra.svg"
+    },
+    {
+      "labels": "automatic",
+      "id": "lyapunov",
+      "format": "Png",
+      "file": "extra-lyapunov.png"
+    },
+    {
+      "labels": "automatic",
+      "id": "lyapunov",
+      "format": "Svg",
+      "file": "extra-lyapunov.svg"
+    },
+    {
+      "labels": "automatic",
+      "id": "rms",
+      "format": "Png",
+      "file": "extra-rms.png"
+    },
+    {
+      "labels": "automatic",
+      "id": "rms",
+      "format": "Svg",
+      "file": "extra-rms.svg"
+    },
+    {
+      "labels": "automatic",
+      "id": "histogram",
+      "format": "Png",
+      "file": "extra-histogram.png"
+    },
+    {
+      "labels": "automatic",
+      "id": "histogram",
+      "format": "Svg",
+      "file": "extra-histogram.svg"
+    },
+    {
+      "labels": "automatic",
+      "id": "autocorrelation",
+      "format": "Png",
+      "file": "extra-autocorrelation.png"
+    },
+    {
+      "labels": "automatic",
+      "id": "autocorrelation",
+      "format": "Svg",
+      "file": "extra-autocorrelation.svg"
+    },
+    {
+      "labels": "automatic",
+      "id": "custom",
+      "format": "Png",
+      "file": "extra-custom.png"
+    },
+    {
+      "labels": "automatic",
+      "id": "custom",
+      "format": "Svg",
+      "file": "extra-custom.svg"
+    },
+    {
+      "labels": "layout",
+      "id": "time",
+      "format": "Png",
+      "file": "layout-2x4.png"
+    },
+    {
+      "labels": "layout",
+      "id": "time",
+      "format": "Svg",
+      "file": "layout-2x4.svg"
+    },
+    {
+      "labels": "layout",
+      "id": "time",
+      "format": "Png",
+      "file": "layout-8x2.png"
+    },
+    {
+      "labels": "layout",
+      "id": "time",
+      "format": "Svg",
+      "file": "layout-8x2.svg"
+    }
+  ],
+  "guide": "9 steps + locate + Escape passed",
+  "errors": []
+}
